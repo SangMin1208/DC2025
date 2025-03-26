@@ -1,10 +1,17 @@
 [
   {
+    "objectID": "posts/hi.html",
+    "href": "posts/hi.html",
+    "title": "1. R distributions",
+    "section": "",
+    "text": "1. Normal Distribution(정규분포)\n\n(Random Number Generation)\nrnorm(n, mean, sd) -&gt; 평균 mean, 표준편차 sd 에서 n개 랜덤 추출\n\n\nnormal_random &lt;- rnorm(n = 10, mean = 0, sd = 1)\nprint(\"Normal Random Numbers:\")\nprint(normal_random)\n\n[1] \"Normal Random Numbers:\"\n [1] -0.72730915 -0.09955575 -2.01791946 -1.17899047  0.08952181  0.84630774\n [7]  0.34269490  0.17711561  1.02601457  0.60893424\n\n\n\n(Probability Density Function - PDF)\n확률밀도함수\n\n\n\nnormal_pdf &lt;- dnorm(x = seq(-10,10,by=0.05), mean = 0, sd = 1)\nplot(seq(-10,10,by=0.05),normal_pdf, type='l', main ='Normal PDF')"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "DC2025",
     "section": "",
-    "text": "Date\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nMar 24, 2025\n\n\nDC2025\n\n\n이상민 \n\n\n\n\n\nNo matching items"
+    "text": "Date\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nMar 24, 2025\n\n\n1. R distributions\n\n\n이상민 \n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "about.html",
