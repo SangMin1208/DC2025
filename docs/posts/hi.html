@@ -205,14 +205,99 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>(Probability Density Function - PDF)</li>
 <li>확률밀도함수</li>
 </ul>
-<div id="cell-4" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>normal_pdf <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(<span class="at">x =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">10</span>,<span class="at">by=</span><span class="fl">0.05</span>), <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">seq</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">10</span>,<span class="at">by=</span><span class="fl">0.05</span>),normal_pdf, <span class="at">type=</span><span class="st">'l'</span>, <span class="at">main =</span><span class="st">'Normal PDF'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-4" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>normal_pdf <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(<span class="at">x =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">10</span>,<span class="at">by=</span><span class="fl">0.05</span>), <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">seq</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">10</span>,<span class="at">by=</span><span class="fl">0.05</span>),normal_pdf, <span class="at">type=</span><span class="st">'l'</span>, <span class="at">main =</span><span class="st">'Normal PDF'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
 <p><img src="hi_files/figure-html/cell-3-output-1.png" width="420" height="420" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li>(Cumulative Distribution Function - CDF)</li>
+<li>누적분포함수</li>
+</ul>
+<div id="cell-6" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>normal_cdf <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(<span class="at">q =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">10</span>,<span class="at">by=</span><span class="fl">0.05</span>), <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">seq</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">10</span>,<span class="at">by=</span><span class="fl">0.05</span>),normal_cdf, <span class="at">main=</span><span class="st">'Norma CDF'</span>, <span class="at">type=</span><span class="st">'l'</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="hi_files/figure-html/cell-4-output-1.png" width="420" height="420" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li>(Quantile Function)</li>
+<li>분위함수</li>
+</ul>
+<div id="cell-8" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>normal_quantile <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="at">p =</span> <span class="fl">0.95</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)  <span class="co"># 95% 분위수</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Normal Quantile at p=0.95:"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(normal_quantile)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Normal Quantile at p=0.95:"
+[1] 1.644854</code></pre>
+</div>
+</div>
+</section>
+<section id="bernoulli-distribution베르누이-분포" class="level3">
+<h3 class="anchored" data-anchor-id="bernoulli-distribution베르누이-분포">2. Bernoulli Distribution(베르누이 분포)</h3>
+<ul>
+<li>p=prob 에서</li>
+<li>size번 베르누이 시행해서 성공한 횟수</li>
+<li>n번 반복해서 return</li>
+</ul>
+<div id="cell-11" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>bernoulli_random <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">prob =</span> <span class="fl">0.6</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Bernoulli Random Numbers:"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(bernoulli_random)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Bernoulli Random Numbers:"
+ [1] 1 1 1 0 0 1 1 0 1 1</code></pre>
+</div>
+</div>
+<ul>
+<li>(Probability Mass Function - PMF)</li>
+<li>확률 질량 함수</li>
+</ul>
+<div id="cell-13" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>bernoulli_pmf <span class="ot">&lt;-</span> <span class="fu">dbinom</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">size =</span> <span class="dv">1</span>, <span class="at">prob =</span> <span class="fl">0.6</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(bernoulli_pmf, <span class="at">main =</span><span class="st">'Bernoulli pmf'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="hi_files/figure-html/cell-7-output-1.png" width="420" height="420" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li>pbinom(q, size, prob)</li>
+<li>누적 분포 함수</li>
+</ul>
+<div id="cell-15" class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>bernoulli_cdf <span class="ot">&lt;-</span> <span class="fu">pbinom</span>(<span class="at">q =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">size =</span> <span class="dv">1</span>, <span class="at">prob =</span> <span class="fl">0.6</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(bernoulli_cdf<span class="sc">~</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.2</span>, <span class="fl">1.2</span>),<span class="at">main =</span><span class="st">'Bernoulli cdf'</span>, <span class="at">type=</span><span class="st">'s'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="hi_files/figure-html/cell-8-output-1.png" width="420" height="420" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-16" class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>bernoulli_cdf <span class="ot">&lt;-</span> <span class="fu">pbinom</span>(<span class="at">q =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="at">size =</span> <span class="dv">3</span>, <span class="at">prob =</span> <span class="fl">0.6</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(bernoulli_cdf<span class="sc">~</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.2</span>, <span class="fl">3.2</span>),<span class="at">main =</span><span class="st">'Bernoulli cdf'</span>, <span class="at">type=</span><span class="st">'s'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="hi_files/figure-html/cell-9-output-1.png" width="420" height="420" class="figure-img"></p>
 </figure>
 </div>
 </div>
