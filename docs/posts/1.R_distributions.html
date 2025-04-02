@@ -273,7 +273,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p><code>-</code> pbinom(q, size, prob) * 누적 분포 함수</p>
+<p><code>-</code> pbinom(q, size, prob)</p>
+<ul>
+<li>누적 분포 함수</li>
+</ul>
 <div id="cell-15" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>bernoulli_cdf <span class="ot">&lt;-</span> <span class="fu">pbinom</span>(<span class="at">q =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">size =</span> <span class="dv">1</span>, <span class="at">prob =</span> <span class="fl">0.6</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(bernoulli_cdf<span class="sc">~</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.2</span>, <span class="fl">1.2</span>),<span class="at">main =</span><span class="st">'Bernoulli cdf'</span>, <span class="at">type=</span><span class="st">'s'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -338,7 +341,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p><code>-</code> 이항분포의 특성상 분산이 더 작음 * E(X) = np * Var(X) = npq * q=1-p 이므로 &lt;=1</p>
+<p><code>-</code> 이항분포의 특성상 분산이 더 작음</p>
+<ul>
+<li>E(X) = np</li>
+<li>Var(X) = npq</li>
+<li>q=1-p 이므로 &lt;=1</li>
+</ul>
 <div id="cell-25" class="cell" data-execution_count="39">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>binomial_random <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="at">n =</span> <span class="dv">100</span>, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">prob =</span> <span class="fl">0.4</span>)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(binomial_random)</span>
@@ -350,7 +358,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 1.42010101010101
 </div>
 </div>
-<p><code>-</code> 누적 분포 함수 * pbinom(q, size, prob)</p>
+<p><code>-</code> 누적 분포 함수</p>
+<ul>
+<li>pbinom(q, size, prob)</li>
+</ul>
 <div id="cell-27" class="cell" data-execution_count="41">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>binomial_cdf <span class="ot">&lt;-</span> <span class="fu">pbinom</span>(<span class="at">q =</span> <span class="fu">c</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">5</span>), <span class="at">size =</span> <span class="dv">5</span>, <span class="at">prob =</span> <span class="fl">0.4</span>)</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(binomial_cdf<span class="sc">~</span><span class="fu">c</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">5</span>), <span class="at">main =</span><span class="st">'Binomial cdf'</span>, <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">5</span>), <span class="at">type=</span><span class="st">'s'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -362,7 +373,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p><code>-</code> (Quantile Function) * 분위함수 * qbinom(p, size, prob)</p>
+<p><code>-</code> (Quantile Function)</p>
+<ul>
+<li>분위함수</li>
+<li>qbinom(p, size, prob)</li>
+</ul>
 <div id="cell-29" class="cell" data-execution_count="43">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>binomial_quantile <span class="ot">&lt;-</span> <span class="fu">qbinom</span>(<span class="at">p =</span> <span class="fl">0.7</span>, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">prob =</span> <span class="fl">0.4</span>)</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Binomial Quantile at p=0.7:"</span>)</span>
