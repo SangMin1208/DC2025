@@ -7,6 +7,20 @@
     "text": "- 상관계수\n\nX,Y에 상수를 곱해줘도 그대로, 변하지 않음\n기울기만 변함\n\n\nx = rnorm(100)\ny = rnorm(100) + 2*x\nplot(x,y)\ncor(x,y)\npoints(2*x, 0.25*y, col='red') \ncor(2*x, 0.25*y)\n\n0.881075342687499\n\n\n0.881075342687499\n\n\n\n\n\n\n\n\n\n- 상관계수\n\naX, bY 의 상관계수에서 aXb &lt;0 이면\nCorr(aX,bY) = -Corr(X,Y)\n상관계수 크기는 그대로\n기울기만 변함\n\n\nx = rnorm(100)\ny = rnorm(100) + 2*x\nplot(x,y)\ncor(x,y)\npoints(-2*x, 0.1*y, col='red') \ncor(-2*x, 0.1*y)\n\n0.906127948410664\n\n\n-0.906127948410664\n\n\n\n\n\n\n\n\n\n- 상관계수 : 기울기와 관련 X, 직선에 얼마나 몰려있는가"
   },
   {
+    "objectID": "posts/3.DC_HW1.html",
+    "href": "posts/3.DC_HW1.html",
+    "title": "3. DC HW1",
+    "section": "",
+    "text": "- 히스토그램\n\nnormal_random &lt;- rnorm(n = 500, mean = 3)\nhist(normal_random)\n\n\n\n\n\n\n\n\n- 표본평균\n\nmean(normal_random)\n\n3.0025640596709"
+  },
+  {
+    "objectID": "posts/3.DC_HW1.html#제공된-코드를-이용하여-아래를-시행하시오.",
+    "href": "posts/3.DC_HW1.html#제공된-코드를-이용하여-아래를-시행하시오.",
+    "title": "3. DC HW1",
+    "section": "",
+    "text": "- 히스토그램\n\nnormal_random &lt;- rnorm(n = 500, mean = 3)\nhist(normal_random)\n\n\n\n\n\n\n\n\n- 표본평균\n\nmean(normal_random)\n\n3.0025640596709"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "DC2025",

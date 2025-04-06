@@ -22,10 +22,44 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -68,6 +102,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 <link rel="stylesheet" href="../styles.css">
@@ -151,8 +188,39 @@ ul.task-list li input[type="checkbox"] {
 
 
 
+<section id="제공된-코드를-이용하여-아래를-시행하시오." class="level2">
+<h2 class="anchored" data-anchor-id="제공된-코드를-이용하여-아래를-시행하시오."><strong>1. 제공된 코드를 이용하여 아래를 시행하시오.</strong></h2>
+<section id="평균이-3인-정규분포-포아송분포-이항분포-감마분포-지수분포에서-각-500개의-표본을-생성해서-5개의-히스토그램을-그리고-5개의-표본평균을-구하시오.-모수가-여러-개인-경우-모수의-값을-조정해서-평균을-3으로-하시오" class="level3">
+<h3 class="anchored" data-anchor-id="평균이-3인-정규분포-포아송분포-이항분포-감마분포-지수분포에서-각-500개의-표본을-생성해서-5개의-히스토그램을-그리고-5개의-표본평균을-구하시오.-모수가-여러-개인-경우-모수의-값을-조정해서-평균을-3으로-하시오"><strong>1) 평균이 3인 정규분포, 포아송분포, 이항분포, 감마분포, 지수분포에서 각 500개의 표본을 생성해서 5개의 히스토그램을 그리고 5개의 표본평균을 구하시오. 모수가 여러 개인 경우 모수의 값을 조정해서 평균을 3으로 하시오</strong></h3>
+</section>
+<section id="정규분포" class="level3">
+<h3 class="anchored" data-anchor-id="정규분포">1. 정규분포</h3>
+<p><code>-</code> 히스토그램</p>
+<div id="6497a983-c9bb-4627-a0a4-28d603509361" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>normal_random <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">500</span>, <span class="at">mean =</span> <span class="dv">3</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(normal_random)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="3.DC_HW1_files/figure-html/cell-2-output-1.png" width="420" height="420" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><code>-</code> 표본평균</p>
+<div id="35fdccc3-a3cf-4050-8810-fbe0c76f73d6" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(normal_random)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+3.0025640596709
+</div>
+</div>
+</section>
+<section id="포아송분포" class="level3">
+<h3 class="anchored" data-anchor-id="포아송분포">2. 포아송분포</h3>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
