@@ -277,7 +277,12 @@ window.Quarto = {
 </section>
 <section id="bernoulli-distribution베르누이-분포" class="level3">
 <h3 class="anchored" data-anchor-id="bernoulli-distribution베르누이-분포">2. Bernoulli Distribution(베르누이 분포)</h3>
-<p><code>-</code> rbinom * p=prob 에서 * size번 베르누이 시행해서 성공한 횟수 * n번 반복해서 return</p>
+<p><code>-</code> rbinom</p>
+<ul>
+<li>p=prob 에서</li>
+<li>size번 베르누이 시행해서 성공한 횟수</li>
+<li>n번 반복해서 return</li>
+</ul>
 <div id="cell-11" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>bernoulli_random <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">prob =</span> <span class="fl">0.6</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Bernoulli Random Numbers:"</span>)</span>
