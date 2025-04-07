@@ -359,17 +359,9 @@ window.Quarto = {
 <ul>
 <li>이항분포에서 <span class="math inline">\(E(X) = np\)</span> 이고</li>
 <li>이항분포에서 <span class="math inline">\(Var(X) = np(1-p)\)</span> 임</li>
-<li>np=3이어야하고 np(1-p)=5여야하므로 (1-p)=5/3 <span class="math inline">\(\to\)</span> 불가능한데? 잠시 pass</li>
-<li><code>size</code> : <code>n</code>, <code>prob</code> = <code>p</code> 에 대응되므로 …</li>
+<li>np=3이어야하고 np(1-p)=5여야하므로 (1-p)=5/3 <span class="math inline">\(\to\)</span> p&gt;1인 상황이므로 불가능하다.</li>
+<li>이항분포에서 평균이 3, 분산이 5인 표본을 추출할 수 없다.</li>
 </ul>
-<div id="578ee9d7-c6dd-4984-bd6f-a0fc89870d92" class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>binomial_random <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="at">n =</span> <span class="dv">500</span>, <span class="at">size =</span> <span class="dv">10</span>, <span class="at">prob =</span> <span class="fl">0.3</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(binomial_random, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="fl">0.5</span>, <span class="fl">10.5</span>, <span class="at">by =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><code>-</code> 표본평균, 표본분산</p>
-<div id="98125fe7-9d65-40e3-9b3a-624860f1900d" class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(binomial_random)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 <section id="정규분포-1" class="level3">
 <h3 class="anchored" data-anchor-id="정규분포-1">2. 정규분포</h3>
@@ -379,20 +371,20 @@ window.Quarto = {
 <li><span class="math inline">\(Var(X)=5\)</span> 이여야 하므로 sd=<span class="math inline">\(\sqrt{Var}\)</span>=<span class="math inline">\(\sqrt5\)</span> 로 지정</li>
 </ul>
 <div id="4f1e24a0-3e78-4b7e-b68a-cc52a3ff9a05" class="cell" data-execution_count="53">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>normal_random <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">500</span>, <span class="at">mean =</span> <span class="dv">3</span>, <span class="at">sd=</span><span class="fu">sqrt</span>(<span class="dv">5</span>))</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(normal_random)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>normal_random <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">500</span>, <span class="at">mean =</span> <span class="dv">3</span>, <span class="at">sd=</span><span class="fu">sqrt</span>(<span class="dv">5</span>))</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(normal_random)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="3.DC_HW1_files/figure-html/cell-14-output-1.png" width="420" height="420" class="figure-img"></p>
+<p><img src="3.DC_HW1_files/figure-html/cell-12-output-1.png" width="420" height="420" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 <p><code>-</code> 표본평균, 표본분산</p>
 <div id="1d2b6c77-2195-4bb2-9d08-770bb86da2ff" class="cell" data-execution_count="60">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(normal_random)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(normal_random)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(normal_random)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(normal_random)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 2.92370604471217
 </div>
@@ -411,20 +403,20 @@ window.Quarto = {
 <li><span class="math inline">\(\to\)</span> <span class="math inline">\(\beta\)</span> = 5/3, <span class="math inline">\(\alpha\)</span> = 9/5 <span class="math inline">\(\to\)</span> rate = 3/5</li>
 </ul>
 <div id="c8a3aa21-ef28-427e-88d7-2f035b1172cf" class="cell" data-execution_count="64">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>gamma_random <span class="ot">=</span> <span class="fu">rgamma</span>(<span class="at">n=</span><span class="dv">500</span>,<span class="at">shape=</span><span class="dv">9</span><span class="sc">/</span><span class="dv">5</span>,<span class="at">rate=</span><span class="dv">3</span><span class="sc">/</span><span class="dv">5</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(gamma_random)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>gamma_random <span class="ot">=</span> <span class="fu">rgamma</span>(<span class="at">n=</span><span class="dv">500</span>,<span class="at">shape=</span><span class="dv">9</span><span class="sc">/</span><span class="dv">5</span>,<span class="at">rate=</span><span class="dv">3</span><span class="sc">/</span><span class="dv">5</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(gamma_random)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="3.DC_HW1_files/figure-html/cell-16-output-1.png" width="420" height="420" class="figure-img"></p>
+<p><img src="3.DC_HW1_files/figure-html/cell-14-output-1.png" width="420" height="420" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 <p><code>-</code> 표본평균, 표본 분산</p>
 <div id="778b6329-1655-4c99-8f4e-40bf20a19cb6" class="cell" data-execution_count="65">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(gamma_random)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(gamma_random)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(gamma_random)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(gamma_random)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 3.15297204789198
 </div>
@@ -438,6 +430,54 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="아래와-같이-표본이-주어져-있다고-한다."><strong>3. 아래와 같이 표본이 주어져 있다고 한다.</strong></h2>
 <section id="두-변수-간의-표본과-공분산-그리고-표본-상관계수를-계산하고-해석하시오" class="level3">
 <h3 class="anchored" data-anchor-id="두-변수-간의-표본과-공분산-그리고-표본-상관계수를-계산하고-해석하시오"><strong>1) 두 변수 간의 표본과 공분산 그리고 표본 상관계수를 계산하고 해석하시오</strong></h3>
+<div id="329d27bf-2d7e-4305-9bf6-6b21c1cc0e43" class="cell" data-execution_count="66">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">10</span>,<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">10</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">7</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="45b262ca-6c6d-4a51-a99b-73ccf84e5ee9" class="cell" data-execution_count="71">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cov</span>(x,y)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(x,y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+4.13888888888889
+</div>
+<div class="cell-output cell-output-display">
+0.442013916579573
+</div>
+</div>
+<p><code>-</code> 표본 공분산 = 4.138</p>
+<ul>
+<li>표본 공분산 : <span class="math inline">\(S_{xy} &gt; 0\)</span> 이므로 x,y는 양의 선형적 관계를 가진다.</li>
+<li><span class="math inline">\(\to\)</span> x가 증가할수록 y도 증가하는 경향을 보인다.</li>
+</ul>
+<p><code>-</code> 표본 상관계수 = 0.442</p>
+<ul>
+<li>표본 상관계수[-1,1] : <span class="math inline">\(r_{xy}\)</span> &gt; 0 이므로 양의 선형관계를 가진다.</li>
+<li>하지만 |<span class="math inline">\(r_{xy}\)</span>|가 0.4정도로 약한 관계를 보인다.</li>
+<li><span class="math inline">\(\to\)</span> x가 증가할수록 y도 증가하는 경향을 보이지만 그 관계는 약하다.</li>
+</ul>
+</section>
+<section id="추가-x-to-2x1-y-to--y2로-변환하고-나서-표본-상관계수를-계산하시오." class="level3">
+<h3 class="anchored" data-anchor-id="추가-x-to-2x1-y-to--y2로-변환하고-나서-표본-상관계수를-계산하시오."><strong>2) (추가) <span class="math inline">\(x\)</span> <span class="math inline">\(\to\)</span> <span class="math inline">\(2x+1\)</span>, <span class="math inline">\(y\)</span> <span class="math inline">\(\to\)</span> <span class="math inline">\(-y+2\)</span>로 변환하고 나서 표본 상관계수를 계산하시오.</strong></h3>
+<div id="01c21048-97de-478a-8592-d6eab0505ca5" class="cell" data-execution_count="72">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(<span class="dv">2</span><span class="sc">*</span>x<span class="sc">+</span><span class="dv">1</span>,<span class="sc">-</span>y<span class="sc">+</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+-0.442013916579573
+</div>
+</div>
+<p><code>-</code> 표본 상관계수 = -0.442</p>
+<ul>
+<li>상관계수의 크기는 선형 변환에 따라 바뀌지 않음</li>
+<li>만약 <span class="math inline">\(aX+b, cX+d\)</span> 에서
+<ul>
+<li><ol type="1">
+<li><span class="math inline">\(a\)</span> X <span class="math inline">\(b\)</span> <span class="math inline">\(&lt; 0\)</span> 이면 <span class="math inline">\(\to\)</span> Corr(aX,cY) = -Corr(X,Y)</li>
+</ol></li>
+<li><ol start="2" type="1">
+<li><span class="math inline">\(a\)</span> X <span class="math inline">\(b\)</span> <span class="math inline">\(&gt; 0\)</span> 이면 <span class="math inline">\(\to\)</span> Corr(aX,cY) = Corr(X,Y)</li>
+</ol></li>
+</ul></li>
+<li>여기서 2 X -1 = -2이므로 1)의 경우이므로 표본 상관계수의 부호가 변하였다.</li>
+</ul>
 
 
 </section>
