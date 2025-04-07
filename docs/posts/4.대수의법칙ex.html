@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="이상민">
-<meta name="dcterms.date" content="2025-04-05">
+<meta name="dcterms.date" content="2025-04-07">
 
-<title>3. DC HW1 – DC2025</title>
+<title>4. 대수의 법칙ex – DC2025</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -106,35 +106,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -181,7 +152,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">3. DC HW1</h1>
+      <h1 class="title">4. 대수의 법칙ex</h1>
                       </div>
   </div>
     
@@ -198,7 +169,7 @@ window.Quarto = {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">April 5, 2025</p>
+        <p class="date">April 7, 2025</p>
       </div>
     </div>
     
@@ -217,231 +188,108 @@ window.Quarto = {
 
 
 
-<section id="제공된-코드를-이용하여-아래를-시행하시오." class="level2">
-<h2 class="anchored" data-anchor-id="제공된-코드를-이용하여-아래를-시행하시오."><strong>1. 제공된 코드를 이용하여 아래를 시행하시오.</strong></h2>
-<section id="평균이-3인-정규분포-포아송분포-이항분포-감마분포-지수분포에서-각-500개의-표본을-생성해서-5개의-히스토그램을-그리고-5개의-표본평균을-구하시오.-모수가-여러-개인-경우-모수의-값을-조정해서-평균을-3으로-하시오" class="level3">
-<h3 class="anchored" data-anchor-id="평균이-3인-정규분포-포아송분포-이항분포-감마분포-지수분포에서-각-500개의-표본을-생성해서-5개의-히스토그램을-그리고-5개의-표본평균을-구하시오.-모수가-여러-개인-경우-모수의-값을-조정해서-평균을-3으로-하시오"><strong>1) 평균이 3인 정규분포, 포아송분포, 이항분포, 감마분포, 지수분포에서 각 500개의 표본을 생성해서 5개의 히스토그램을 그리고 5개의 표본평균을 구하시오. 모수가 여러 개인 경우 모수의 값을 조정해서 평균을 3으로 하시오</strong></h3>
-</section>
-<section id="정규분포" class="level3">
-<h3 class="anchored" data-anchor-id="정규분포">1. 정규분포</h3>
-<p><code>-</code> 표본추출, 히스토그램</p>
-<ul>
-<li>mean = 3 으로 지정</li>
-</ul>
-<div id="6497a983-c9bb-4627-a0a4-28d603509361" class="cell" data-scrolled="true" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>normal_random <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">500</span>, <span class="at">mean =</span> <span class="dv">3</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(normal_random)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="aafc5f38-dd28-4268-9c30-0781d4d2d6e3" class="cell" data-scrolled="true" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cumsum</span>(<span class="fu">rpois</span>(<span class="dv">5000</span>,<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class="list-inline"><li>0</li><li>2</li><li>3</li><li>6</li><li>8</li><li>12</li><li>16</li><li>17</li><li>19</li><li>19</li><li>20</li><li>23</li><li>26</li><li>31</li><li>31</li><li>36</li><li>41</li><li>45</li><li>46</li><li>49</li><li>52</li><li>56</li><li>60</li><li>63</li><li>67</li><li>72</li><li>77</li><li>81</li><li>84</li><li>86</li><li>91</li><li>91</li><li>94</li><li>100</li><li>103</li><li>105</li><li>107</li><li>109</li><li>118</li><li>121</li><li>125</li><li>128</li><li>130</li><li>134</li><li>136</li><li>143</li><li>145</li><li>148</li><li>151</li><li>154</li><li>157</li><li>162</li><li>165</li><li>168</li><li>169</li><li>173</li><li>176</li><li>177</li><li>182</li><li>183</li><li>185</li><li>189</li><li>190</li><li>193</li><li>195</li><li>199</li><li>201</li><li>203</li><li>207</li><li>211</li><li>215</li><li>217</li><li>221</li><li>223</li><li>226</li><li>231</li><li>231</li><li>233</li><li>235</li><li>239</li><li>243</li><li>248</li><li>249</li><li>250</li><li>255</li><li>257</li><li>260</li><li>264</li><li>266</li><li>267</li><li>269</li><li>273</li><li>275</li><li>278</li><li>280</li><li>282</li><li>284</li><li>285</li><li>288</li><li>292</li><li>295</li><li>300</li><li>304</li><li>309</li><li>317</li><li>322</li><li>324</li><li>329</li><li>332</li><li>333</li><li>335</li><li>339</li><li>342</li><li>342</li><li>345</li><li>348</li><li>350</li><li>352</li><li>355</li><li>359</li><li>361</li><li>363</li><li>364</li><li>364</li><li>364</li><li>367</li><li>370</li><li>371</li><li>372</li><li>373</li><li>374</li><li>375</li><li>377</li><li>380</li><li>385</li><li>389</li><li>392</li><li>395</li><li>403</li><li>403</li><li>411</li><li>416</li><li>418</li><li>420</li><li>422</li><li>422</li><li>426</li><li>431</li><li>434</li><li>437</li><li>438</li><li>441</li><li>443</li><li>445</li><li>447</li><li>449</li><li>452</li><li>455</li><li>460</li><li>462</li><li>466</li><li>470</li><li>473</li><li>474</li><li>476</li><li>478</li><li>482</li><li>486</li><li>488</li><li>493</li><li>499</li><li>501</li><li>504</li><li>506</li><li>507</li><li>509</li><li>516</li><li>523</li><li>530</li><li>532</li><li>535</li><li>536</li><li>538</li><li>542</li><li>543</li><li>552</li><li>554</li><li>554</li><li>558</li><li>560</li><li>561</li><li>566</li><li>567</li><li>568</li><li>573</li><li>574</li><li>577</li><li>579</li><li>582</li><li>585</li><li>⋯</li><li>14638</li><li>14638</li><li>14641</li><li>14642</li><li>14648</li><li>14651</li><li>14653</li><li>14655</li><li>14656</li><li>14656</li><li>14658</li><li>14659</li><li>14663</li><li>14665</li><li>14665</li><li>14669</li><li>14672</li><li>14676</li><li>14680</li><li>14681</li><li>14683</li><li>14684</li><li>14685</li><li>14690</li><li>14694</li><li>14699</li><li>14702</li><li>14703</li><li>14707</li><li>14710</li><li>14711</li><li>14714</li><li>14715</li><li>14715</li><li>14722</li><li>14725</li><li>14731</li><li>14735</li><li>14741</li><li>14742</li><li>14742</li><li>14744</li><li>14747</li><li>14751</li><li>14754</li><li>14755</li><li>14759</li><li>14762</li><li>14763</li><li>14765</li><li>14768</li><li>14768</li><li>14771</li><li>14773</li><li>14774</li><li>14783</li><li>14786</li><li>14786</li><li>14791</li><li>14793</li><li>14800</li><li>14800</li><li>14804</li><li>14805</li><li>14808</li><li>14813</li><li>14815</li><li>14821</li><li>14825</li><li>14827</li><li>14831</li><li>14834</li><li>14835</li><li>14836</li><li>14840</li><li>14845</li><li>14847</li><li>14850</li><li>14854</li><li>14856</li><li>14859</li><li>14863</li><li>14864</li><li>14867</li><li>14869</li><li>14871</li><li>14876</li><li>14880</li><li>14882</li><li>14886</li><li>14891</li><li>14894</li><li>14896</li><li>14901</li><li>14902</li><li>14907</li><li>14908</li><li>14911</li><li>14914</li><li>14915</li><li>14919</li><li>14923</li><li>14928</li><li>14931</li><li>14936</li><li>14939</li><li>14943</li><li>14945</li><li>14947</li><li>14954</li><li>14956</li><li>14958</li><li>14961</li><li>14965</li><li>14968</li><li>14968</li><li>14975</li><li>14978</li><li>14980</li><li>14981</li><li>14984</li><li>14986</li><li>14988</li><li>14990</li><li>14993</li><li>14996</li><li>14998</li><li>15002</li><li>15005</li><li>15010</li><li>15013</li><li>15015</li><li>15018</li><li>15021</li><li>15030</li><li>15034</li><li>15037</li><li>15038</li><li>15041</li><li>15044</li><li>15048</li><li>15051</li><li>15052</li><li>15057</li><li>15061</li><li>15064</li><li>15068</li><li>15069</li><li>15071</li><li>15077</li><li>15081</li><li>15085</li><li>15087</li><li>15088</li><li>15093</li><li>15094</li><li>15100</li><li>15103</li><li>15108</li><li>15109</li><li>15112</li><li>15118</li><li>15119</li><li>15120</li><li>15121</li><li>15126</li><li>15128</li><li>15130</li><li>15132</li><li>15137</li><li>15138</li><li>15145</li><li>15147</li><li>15149</li><li>15154</li><li>15157</li><li>15162</li><li>15166</li><li>15170</li><li>15176</li><li>15177</li><li>15181</li><li>15183</li><li>15187</li><li>15190</li><li>15194</li><li>15196</li><li>15199</li><li>15210</li><li>15210</li><li>15211</li><li>15216</li><li>15222</li><li>15228</li><li>15229</li><li>15231</li><li>15237</li><li>15240</li><li>15243</li><li>15244</li></ol>
+</div>
+</div>
+<div id="7f034e49-877c-43d2-9ced-ba4b7bc77850" class="cell" data-scrolled="true" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cumsum</span>(<span class="fu">rpois</span>(<span class="dv">5000</span>,<span class="dv">3</span>))<span class="sc">/</span><span class="dv">1</span><span class="sc">:</span><span class="dv">5000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class="list-inline"><li>1</li><li>0.5</li><li>1.33333333333333</li><li>1.5</li><li>2.4</li><li>2</li><li>2.14285714285714</li><li>2.375</li><li>2.55555555555556</li><li>2.8</li><li>2.81818181818182</li><li>2.66666666666667</li><li>2.61538461538462</li><li>2.64285714285714</li><li>2.53333333333333</li><li>2.4375</li><li>2.41176470588235</li><li>2.5</li><li>2.57894736842105</li><li>2.6</li><li>2.61904761904762</li><li>2.68181818181818</li><li>2.69565217391304</li><li>2.70833333333333</li><li>2.76</li><li>2.76923076923077</li><li>2.74074074074074</li><li>2.75</li><li>2.75862068965517</li><li>2.73333333333333</li><li>2.80645161290323</li><li>2.84375</li><li>2.87878787878788</li><li>2.91176470588235</li><li>2.94285714285714</li><li>2.94444444444444</li><li>2.97297297297297</li><li>3</li><li>2.97435897435897</li><li>2.95</li><li>2.92682926829268</li><li>2.95238095238095</li><li>2.97674418604651</li><li>2.90909090909091</li><li>2.93333333333333</li><li>2.91304347826087</li><li>2.93617021276596</li><li>2.89583333333333</li><li>2.93877551020408</li><li>2.98</li><li>2.98039215686275</li><li>3.01923076923077</li><li>2.9811320754717</li><li>3.05555555555556</li><li>3.05454545454545</li><li>3.05357142857143</li><li>3.07017543859649</li><li>3.03448275862069</li><li>3.05084745762712</li><li>3.03333333333333</li><li>3.0327868852459</li><li>3.01612903225806</li><li>3.03174603174603</li><li>3</li><li>3.03076923076923</li><li>3.04545454545455</li><li>3.08955223880597</li><li>3.05882352941176</li><li>3.01449275362319</li><li>2.98571428571429</li><li>3.02816901408451</li><li>3.05555555555556</li><li>3.05479452054795</li><li>3.05405405405405</li><li>3.06666666666667</li><li>3.05263157894737</li><li>3.06493506493507</li><li>3.03846153846154</li><li>3.0379746835443</li><li>3.05</li><li>3.02469135802469</li><li>3</li><li>3.02409638554217</li><li>3.03571428571429</li><li>3.02352941176471</li><li>3.03488372093023</li><li>3.01149425287356</li><li>2.97727272727273</li><li>2.97752808988764</li><li>2.96666666666667</li><li>2.94505494505495</li><li>2.95652173913043</li><li>2.93548387096774</li><li>2.91489361702128</li><li>2.90526315789474</li><li>2.91666666666667</li><li>2.90721649484536</li><li>2.90816326530612</li><li>2.8989898989899</li><li>2.9</li><li>2.9009900990099</li><li>2.87254901960784</li><li>2.87378640776699</li><li>2.86538461538462</li><li>2.88571428571429</li><li>2.90566037735849</li><li>2.90654205607477</li><li>2.92592592592593</li><li>2.90825688073395</li><li>2.90909090909091</li><li>2.90990990990991</li><li>2.91071428571429</li><li>2.88495575221239</li><li>2.91228070175439</li><li>2.91304347826087</li><li>2.91379310344828</li><li>2.93162393162393</li><li>2.92372881355932</li><li>2.91596638655462</li><li>2.90833333333333</li><li>2.90082644628099</li><li>2.88524590163934</li><li>2.89430894308943</li><li>2.88709677419355</li><li>2.888</li><li>2.88888888888889</li><li>2.88976377952756</li><li>2.890625</li><li>2.89147286821705</li><li>2.9</li><li>2.90076335877863</li><li>2.90151515151515</li><li>2.88721804511278</li><li>2.86567164179104</li><li>2.86666666666667</li><li>2.875</li><li>2.91240875912409</li><li>2.93478260869565</li><li>2.93525179856115</li><li>2.94285714285714</li><li>2.9290780141844</li><li>2.94366197183099</li><li>2.94405594405594</li><li>2.94444444444444</li><li>2.95172413793103</li><li>2.94520547945205</li><li>2.93877551020408</li><li>2.9527027027027</li><li>2.93959731543624</li><li>2.95333333333333</li><li>2.96026490066225</li><li>2.94078947368421</li><li>2.9281045751634</li><li>2.92207792207792</li><li>2.91612903225806</li><li>2.94230769230769</li><li>2.94267515923567</li><li>2.93037974683544</li><li>2.9559748427673</li><li>2.9625</li><li>2.95031055900621</li><li>2.93827160493827</li><li>2.93251533742331</li><li>2.94512195121951</li><li>2.94545454545455</li><li>2.94578313253012</li><li>2.95808383233533</li><li>2.94642857142857</li><li>2.9585798816568</li><li>2.96470588235294</li><li>2.95321637426901</li><li>2.95348837209302</li><li>2.96531791907514</li><li>2.96551724137931</li><li>2.96</li><li>2.96022727272727</li><li>2.94915254237288</li><li>2.96067415730337</li><li>2.9608938547486</li><li>2.95</li><li>2.95027624309392</li><li>2.93956043956044</li><li>2.92349726775956</li><li>2.92391304347826</li><li>2.91891891891892</li><li>2.94086021505376</li><li>2.93582887700535</li><li>2.92553191489362</li><li>2.92592592592593</li><li>2.93157894736842</li><li>2.93193717277487</li><li>2.94270833333333</li><li>2.94300518134715</li><li>2.93814432989691</li><li>2.93333333333333</li><li>2.9234693877551</li><li>2.93401015228426</li><li>2.94444444444444</li><li>2.93467336683417</li><li>2.925</li><li>⋯</li><li>2.98875234326182</li><li>2.98854643898376</li><li>2.98834062044555</li><li>2.98896752706078</li><li>2.98896982310094</li><li>2.9889721181856</li><li>2.98897441231537</li><li>2.98856073211314</li><li>2.98939488459139</li><li>2.98960498960499</li><li>2.99023072126377</li><li>2.99044056525353</li><li>2.9908580926657</li><li>2.99044453676776</li><li>2.99065420560748</li><li>2.99003322259136</li><li>2.99045048785551</li><li>2.99045246990452</li><li>2.99045445113094</li><li>2.99045643153527</li><li>2.99087326280855</li><li>2.99128992119453</li><li>2.99066970765084</li><li>2.99129353233831</li><li>2.99129533678756</li><li>2.99108992954828</li><li>2.99129894344313</li><li>2.99088649544325</li><li>2.99047421826465</li><li>2.99068322981366</li><li>2.99089215483337</li><li>2.9908940397351</li><li>2.99068901303538</li><li>2.99007033512619</li><li>2.99027921406412</li><li>2.99028122415219</li><li>2.99028323340914</li><li>2.99028524183547</li><li>2.99070055796652</li><li>2.99070247933884</li><li>2.99070439991737</li><li>2.9907063197026</li><li>2.99008878794136</li><li>2.98988439306358</li><li>2.98988648090815</li><li>2.98988856789104</li><li>2.98989065401279</li><li>2.99009900990099</li><li>2.98948236749845</li><li>2.99010309278351</li><li>2.99010513296228</li><li>2.99010717230008</li><li>2.98990315268906</li><li>2.98990523279769</li><li>2.99073120494336</li><li>2.99032125205931</li><li>2.99073502161828</li><li>2.99011939069576</li><li>2.98991562049804</li><li>2.98971193415638</li><li>2.98971405060687</li><li>2.98971616618675</li><li>2.98930701213243</li><li>2.98889802631579</li><li>2.98910585817061</li><li>2.98869708179203</li><li>2.98808300801315</li><li>2.98829087921118</li><li>2.9882932840419</li><li>2.98809034907598</li><li>2.98788749743379</li><li>2.98768472906404</li><li>2.98727683152062</li><li>2.98727944193681</li><li>2.98728205128205</li><li>2.98666940114848</li><li>2.98605700225548</li><li>2.98544485444854</li><li>2.98503791760607</li><li>2.98545081967213</li><li>2.98545380045073</li><li>2.9852519459238</li><li>2.98545975834528</li><li>2.98587223587224</li><li>2.98546571136131</li><li>2.98546868604175</li><li>2.98608553304686</li><li>2.9860883797054</li><li>2.98629576600532</li><li>2.98609406952965</li><li>2.98609691269679</li><li>2.98630417007359</li><li>2.98569384835479</li><li>2.98569677155701</li><li>2.985291113381</li><li>2.98529411764706</li><li>2.985092914029</li><li>2.98570845242956</li><li>2.98571136966728</li><li>2.98530612244898</li><li>2.98490104060396</li><li>2.98490412076703</li><li>2.9847032429125</li><li>2.98429853181077</li><li>2.98409785932722</li><li>2.98410110069303</li><li>2.98430813124108</li><li>2.98431132844336</li><li>2.98370340191485</li><li>2.98411405295316</li><li>2.98432091223783</li><li>2.98513843648208</li><li>2.98473437818034</li><li>2.98453398453398</li><li>2.9851475076297</li><li>2.98494711147274</li><li>2.98474679682733</li><li>2.98454656364376</li><li>2.98515958528156</li><li>2.98475609756098</li><li>2.98414956309693</li><li>2.98455912230801</li><li>2.98476538695917</li><li>2.98476848090983</li><li>2.98517766497462</li><li>2.98497766950873</li><li>2.9851836817536</li><li>2.98538961038961</li><li>2.98498681274092</li><li>2.98458417849899</li><li>2.98438450618536</li><li>2.98438767234388</li><li>2.98459355361849</li><li>2.98459667612485</li><li>2.98480243161094</li><li>2.98419773095624</li><li>2.98460603605428</li><li>2.98481166464156</li><li>2.98440979955457</li><li>2.98461538461538</li><li>2.98401133373811</li><li>2.9840145690004</li><li>2.9842201092454</li><li>2.98483009708738</li><li>2.98442871587462</li><li>2.98422968054994</li><li>2.98443501111785</li><li>2.98524656426839</li><li>2.9852495453627</li><li>2.98565656565657</li><li>2.98626540092911</li><li>2.98667205169628</li><li>2.98707853825964</li><li>2.98728300363343</li><li>2.98728557013118</li><li>2.98708635996772</li><li>2.98729070002017</li><li>2.98769665187576</li><li>2.98749747933051</li><li>2.98689516129032</li><li>2.98649465833501</li><li>2.98649738008867</li><li>2.98629860971187</li><li>2.98630136986301</li><li>2.98630412890232</li><li>2.98670962545308</li><li>2.98691362995772</li><li>2.98711755233494</li><li>2.98732139263433</li><li>2.98712273641851</li><li>2.98732649366325</li><li>2.98732904263878</li><li>2.98733159058918</li><li>2.98713309207881</li><li>2.98753768844221</li><li>2.98733922829582</li><li>2.98754269640346</li><li>2.98734431498594</li><li>2.98714601325567</li><li>2.98694779116466</li><li>2.98654888576591</li><li>2.98655158570855</li><li>2.98675496688742</li><li>2.98675762439807</li><li>2.98676028084253</li><li>2.98656237464902</li><li>2.98696611189092</li><li>2.9873696872494</li><li>2.98737221888154</li><li>2.9877755511022</li><li>2.98757763975155</li><li>2.98798076923077</li><li>2.98798317644703</li><li>2.98838606327593</li><li>2.98778778778779</li><li>2.98799039231385</li><li>2.98779267560536</li><li>2.98779511804722</li><li>2.9873974794959</li><li>2.9876</li></ol>
+</div>
+</div>
+<div id="6875b7fb-781b-49ba-81e2-5ae4fe979e0d" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ts.plot</span>(<span class="fu">cumsum</span>(<span class="fu">rpois</span>(<span class="dv">5000</span>,<span class="dv">3</span>))<span class="sc">/</span><span class="dv">1</span><span class="sc">:</span><span class="dv">5000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="3.DC_HW1_files/figure-html/cell-2-output-1.png" width="420" height="420" class="figure-img"></p>
+<p><img src="4.대수의법칙ex_files/figure-html/cell-4-output-1.png" width="420" height="420" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<p><code>-</code> 표본평균</p>
-<div id="35fdccc3-a3cf-4050-8810-fbe0c76f73d6" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(normal_random)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-3.0025640596709
-</div>
-</div>
-</section>
-<section id="포아송분포" class="level3">
-<h3 class="anchored" data-anchor-id="포아송분포">2. 포아송분포</h3>
-<p><code>-</code> 표본추출, 히스토그램</p>
+<p><code>-</code> 모평균이 3이므로 3으로 가까이 수렴하는 형태</p>
 <ul>
-<li>포아송 분포에서 <span class="math inline">\(E(X) = \lambda\)</span> 이므로 <span class="math inline">\(\lambda\)</span> = 3으로 지정</li>
+<li>분포 종류 상관 x</li>
+<li>대수의 법칙</li>
 </ul>
-<div id="264a43d5-9594-41b7-8c60-d740a2b781fa" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>poisson_random <span class="ot">&lt;-</span> <span class="fu">rpois</span>(<span class="at">n =</span> <span class="dv">500</span>, <span class="at">lambda =</span> <span class="dv">3</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(poisson_random)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="d66409af-3fe7-47a1-8223-e2a8edbd3477" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>rs<span class="ot">=</span><span class="fu">rep</span>(<span class="dv">0</span>,<span class="dv">1000</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(k <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    rs[k]<span class="ot">=</span><span class="fu">mean</span>(<span class="fu">rpois</span>(<span class="dv">1000</span><span class="sc">*</span>k,<span class="dv">3</span>))</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(k<span class="sc">%%</span><span class="dv">100</span> <span class="sc">==</span> <span class="dv">0</span>) <span class="fu">print</span>(k)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 100
+[1] 200
+[1] 300
+[1] 400
+[1] 500
+[1] 600
+[1] 700
+[1] 800
+[1] 900
+[1] 1000</code></pre>
+</div>
+</div>
+<div id="802e2559-1726-4da8-80ed-c716d712bb86" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="3.DC_HW1_files/figure-html/cell-4-output-1.png" width="420" height="420" class="figure-img"></p>
+<p><img src="4.대수의법칙ex_files/figure-html/cell-6-output-1.png" width="420" height="420" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<p><code>-</code> 표본평균</p>
-<div id="4679b1be-380c-48b7-8b40-6d7e555f0fd8" class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(poisson_random)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-2.874
+<p><code>-</code> 표본의 크기가 커지면 더 가늘어짐</p>
+<div id="9842b1f7-b061-4008-a7ea-1ea61fe8679d" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>rs<span class="ot">=</span><span class="fu">rep</span>(<span class="dv">0</span>,<span class="dv">1000</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(k <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    rs[k]<span class="ot">=</span><span class="fu">mean</span>(<span class="fu">rpois</span>(<span class="dv">2000</span><span class="sc">*</span>k,<span class="dv">3</span>))</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(k<span class="sc">%%</span><span class="dv">100</span> <span class="sc">==</span> <span class="dv">0</span>) <span class="fu">print</span>(k)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 100
+[1] 200
+[1] 300
+[1] 400
+[1] 500
+[1] 600
+[1] 700
+[1] 800
+[1] 900
+[1] 1000</code></pre>
 </div>
 </div>
-</section>
-<section id="이항분포" class="level3">
-<h3 class="anchored" data-anchor-id="이항분포">3. 이항분포</h3>
-<p><code>-</code> 표본추출, 히스토그램</p>
-<ul>
-<li>이항분포에서 <span class="math inline">\(E(X) = np =\)</span> 3이 되어야하고, <code>size</code> : <code>n</code>, <code>prob</code> = <code>p</code> 에 대응되므로 평균을 10 X 0.3 = 3으로 설정</li>
-</ul>
-<div id="20ed961e-ee4f-4706-b26c-6fa773b236a5" class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>binomial_random <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="at">n =</span> <span class="dv">500</span>, <span class="at">size =</span> <span class="dv">10</span>, <span class="at">prob =</span> <span class="fl">0.3</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(binomial_random, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="fl">0.5</span>, <span class="fl">10.5</span>, <span class="at">by =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="b15bd9d3-c338-43a7-bde9-bc6115ddaef8" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="3.DC_HW1_files/figure-html/cell-6-output-1.png" width="420" height="420" class="figure-img"></p>
+<p><img src="4.대수의법칙ex_files/figure-html/cell-8-output-1.png" width="420" height="420" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<p><code>-</code> 표본평균</p>
-<div id="d46fd8f6-20da-4205-a69c-b0d9ad1ac2d2" class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(binomial_random)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-3.106
-</div>
-</div>
-</section>
-<section id="감마분포" class="level3">
-<h3 class="anchored" data-anchor-id="감마분포">4. 감마분포</h3>
-<p><code>-</code> 표본추출, 히스토그램</p>
-<ul>
-<li><span class="math inline">\(GAM(\alpha,\beta)\)</span> 에서 <code>shape</code> : <span class="math inline">\(\alpha\)</span>, <code>rate</code> : <span class="math inline">\(\frac{1}{\beta}\)</span> 에 대응</li>
-<li>감마분포에서 <span class="math inline">\(E(X) =\)</span> <span class="math inline">\(\alpha\)</span> X <span class="math inline">\(\beta =\)</span> 3이 되어야함</li>
-<li>1(shape) X 3(=1/rate) = 3</li>
-</ul>
-<div id="53d36382-62c7-446c-b58c-0f294ddc2808" class="cell" data-execution_count="36">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>gamma_random <span class="ot">=</span> <span class="fu">rgamma</span>(<span class="at">n=</span><span class="dv">500</span>,<span class="at">shape=</span><span class="dv">1</span>,<span class="at">rate=</span><span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(gamma_random)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="3.DC_HW1_files/figure-html/cell-8-output-1.png" width="420" height="420" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><code>-</code> 표본평균</p>
-<div id="9c5a874b-3462-428f-af6d-494472c48fcd" class="cell" data-execution_count="37">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(gamma_random)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-2.86597826745274
-</div>
-</div>
-</section>
-<section id="지수분포" class="level3">
-<h3 class="anchored" data-anchor-id="지수분포">5. 지수분포</h3>
-<p><code>-</code> 표본추출, 히스토그램</p>
-<ul>
-<li>지수분포에서 <span class="math inline">\(E(X)= \frac{1}{\lambda}=\)</span> 3이 되어야함</li>
-<li>rate= <span class="math inline">\(\lambda\)</span> 이므로 3(=1/rate)=3</li>
-</ul>
-<div id="fd47b4bb-6ee5-40dc-83b1-9d1f089f7a59" class="cell" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>exponential_random <span class="ot">&lt;-</span> <span class="fu">rexp</span>(<span class="at">n =</span> <span class="dv">500</span>, <span class="at">rate =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(exponential_random)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="3.DC_HW1_files/figure-html/cell-10-output-1.png" width="420" height="420" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><code>-</code> 표본평균</p>
-<div id="874980a0-dba7-423b-b993-33f102c79563" class="cell" data-execution_count="28">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(exponential_random)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-3.00293798354794
-</div>
-</div>
-</section>
-<section id="추가-이항분포-정규분포-감마분포에서-평균을-3-분산을-5로-하여-각-500-개의-표본을-생성해서-3개의-히스토그램과-표본평균-그리고-표본-분산을-구하시오" class="level3">
-<h3 class="anchored" data-anchor-id="추가-이항분포-정규분포-감마분포에서-평균을-3-분산을-5로-하여-각-500-개의-표본을-생성해서-3개의-히스토그램과-표본평균-그리고-표본-분산을-구하시오"><strong>2) (추가) 이항분포, 정규분포, 감마분포에서 평균을 3, 분산을 5로 하여 각 500 개의 표본을 생성해서 3개의 히스토그램과 표본평균 그리고 표본 분산을 구하시오</strong></h3>
-</section>
-<section id="이항분포-1" class="level3">
-<h3 class="anchored" data-anchor-id="이항분포-1">1. 이항분포</h3>
-<p><code>-</code> 표본추출, 히스토그램</p>
-<ul>
-<li>이항분포에서 <span class="math inline">\(E(X) = np\)</span> 이고</li>
-<li>이항분포에서 <span class="math inline">\(Var(X) = np(1-p)\)</span> 임</li>
-<li>np=3이어야하고 np(1-p)=5여야하므로 (1-p)=5/3 <span class="math inline">\(\to\)</span> 불가능한데? 잠시 pass</li>
-<li><code>size</code> : <code>n</code>, <code>prob</code> = <code>p</code> 에 대응되므로 …</li>
-</ul>
-<div id="578ee9d7-c6dd-4984-bd6f-a0fc89870d92" class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>binomial_random <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="at">n =</span> <span class="dv">500</span>, <span class="at">size =</span> <span class="dv">10</span>, <span class="at">prob =</span> <span class="fl">0.3</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(binomial_random, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="fl">0.5</span>, <span class="fl">10.5</span>, <span class="at">by =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><code>-</code> 표본평균, 표본분산</p>
-<div id="98125fe7-9d65-40e3-9b3a-624860f1900d" class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(binomial_random)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="정규분포-1" class="level3">
-<h3 class="anchored" data-anchor-id="정규분포-1">2. 정규분포</h3>
-<p><code>-</code> 표본추출, 히스토그램</p>
-<ul>
-<li>mean = 3 으로 지정</li>
-<li><span class="math inline">\(Var(X)=5\)</span> 이여야 하므로 sd=<span class="math inline">\(\sqrt{Var}\)</span>=<span class="math inline">\(\sqrt5\)</span> 로 지정</li>
-</ul>
-<div id="4f1e24a0-3e78-4b7e-b68a-cc52a3ff9a05" class="cell" data-execution_count="53">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>normal_random <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">500</span>, <span class="at">mean =</span> <span class="dv">3</span>, <span class="at">sd=</span><span class="fu">sqrt</span>(<span class="dv">5</span>))</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(normal_random)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="3.DC_HW1_files/figure-html/cell-14-output-1.png" width="420" height="420" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><code>-</code> 표본평균, 표본분산</p>
-<div id="1d2b6c77-2195-4bb2-9d08-770bb86da2ff" class="cell" data-execution_count="60">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(normal_random)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(normal_random)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-2.92370604471217
-</div>
-<div class="cell-output cell-output-display">
-5.19843216215837
-</div>
-</div>
-</section>
-<section id="감마분포-1" class="level3">
-<h3 class="anchored" data-anchor-id="감마분포-1">3. 감마분포</h3>
-<p><code>-</code> 표본추출, 히스토그램</p>
-<ul>
-<li><span class="math inline">\(GAM(\alpha,\beta)\)</span> 에서 <code>shape</code> : <span class="math inline">\(\alpha\)</span>, <code>rate</code> : <span class="math inline">\(\frac{1}{\beta}\)</span> 에 대응</li>
-<li>감마분포에서 <span class="math inline">\(E(X) =\)</span> <span class="math inline">\(\alpha\)</span> X <span class="math inline">\(\beta\)</span> = 3이 되어야함</li>
-<li><span class="math inline">\(Var(X) =\)</span> <span class="math inline">\(\alpha\)</span> X <span class="math inline">\(\beta^2\)</span> = 5가 되어야함</li>
-<li><span class="math inline">\(\to\)</span> <span class="math inline">\(\beta\)</span> = 5/3, <span class="math inline">\(\alpha\)</span> = 9/5 <span class="math inline">\(\to\)</span> rate = 3/5</li>
-</ul>
-<div id="c8a3aa21-ef28-427e-88d7-2f035b1172cf" class="cell" data-execution_count="64">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>gamma_random <span class="ot">=</span> <span class="fu">rgamma</span>(<span class="at">n=</span><span class="dv">500</span>,<span class="at">shape=</span><span class="dv">9</span><span class="sc">/</span><span class="dv">5</span>,<span class="at">rate=</span><span class="dv">3</span><span class="sc">/</span><span class="dv">5</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(gamma_random)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="3.DC_HW1_files/figure-html/cell-16-output-1.png" width="420" height="420" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><code>-</code> 표본평균, 표본 분산</p>
-<div id="778b6329-1655-4c99-8f4e-40bf20a19cb6" class="cell" data-execution_count="65">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(gamma_random)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(gamma_random)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-3.15297204789198
-</div>
-<div class="cell-output cell-output-display">
-4.84604724922782
-</div>
-</div>
-</section>
-</section>
-<section id="아래와-같이-표본이-주어져-있다고-한다." class="level2">
-<h2 class="anchored" data-anchor-id="아래와-같이-표본이-주어져-있다고-한다."><strong>3. 아래와 같이 표본이 주어져 있다고 한다.</strong></h2>
-<section id="두-변수-간의-표본과-공분산-그리고-표본-상관계수를-계산하고-해석하시오" class="level3">
-<h3 class="anchored" data-anchor-id="두-변수-간의-표본과-공분산-그리고-표본-상관계수를-계산하고-해석하시오"><strong>1) 두 변수 간의 표본과 공분산 그리고 표본 상관계수를 계산하고 해석하시오</strong></h3>
 
 
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
