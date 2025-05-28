@@ -2,7 +2,9 @@
   {
     "listing": "/index.html",
     "items": [
-      "/posts/8.Regression.html",
+      "/posts/99.11.K-NN_Classification.html",
+      "/posts/99.10.K-NN_Regression.html",
+      "/posts/9.Regression.html",
       "/posts/8.Classifier.html",
       "/posts/7.Prediction_Simulations2.html",
       "/posts/6.Prediction_Simulations1.html",
