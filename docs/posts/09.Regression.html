@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="이상민">
-<meta name="dcterms.date" content="2025-04-04">
+<meta name="dcterms.date" content="2025-05-19">
 
-<title>2. 상관계수 ex – DC2025</title>
+<title>9. Regression – DC2025</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -152,7 +152,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">2. 상관계수 ex</h1>
+      <h1 class="title">9. Regression</h1>
                       </div>
   </div>
     
@@ -169,7 +169,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">April 4, 2025</p>
+        <p class="date">May 19, 2025</p>
       </div>
     </div>
     
@@ -188,63 +188,229 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<p><code>-</code> 상관계수</p>
-<ul>
-<li><p>X,Y에 상수를 곱해줘도 그대로, 변하지 않음</p></li>
-<li><p>기울기만 변함</p></li>
-</ul>
-<div id="662ac145-3a58-4237-8b84-41600dc66c78" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">100</span>) <span class="sc">+</span> <span class="dv">2</span><span class="sc">*</span>x</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(x,y)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="dv">2</span><span class="sc">*</span>x, <span class="fl">0.25</span><span class="sc">*</span>y, <span class="at">col=</span><span class="st">'red'</span>) </span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(<span class="dv">2</span><span class="sc">*</span>x, <span class="fl">0.25</span><span class="sc">*</span>y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-0.881075342687499
+<section id="imports" class="level3">
+<h3 class="anchored" data-anchor-id="imports">1. imports</h3>
+<div id="c7ec19fe-cfd9-4394-8184-30a132385aae" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("ggplot2")</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell-output cell-output-display">
-0.881075342687499
+</section>
+<section id="data" class="level3">
+<h3 class="anchored" data-anchor-id="data">2. data</h3>
+<div id="48f91ae3-130e-4830-a3a9-547b7425e13c" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(diamonds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p><code>-</code> cut, color, clarity를 범주형(factor)로 변환</p>
+<div id="89f46bd7-c430-4bba-ad57-74a6831cc300" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>diamonds<span class="sc">$</span>cut <span class="ot">&lt;-</span> <span class="fu">factor</span>(diamonds<span class="sc">$</span>cut, <span class="at">ordered =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>diamonds<span class="sc">$</span>color <span class="ot">&lt;-</span> <span class="fu">factor</span>(diamonds<span class="sc">$</span>color, <span class="at">ordered =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>diamonds<span class="sc">$</span>clarity <span class="ot">&lt;-</span> <span class="fu">factor</span>(diamonds<span class="sc">$</span>clarity, <span class="at">ordered =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>-</code> 사용할 변수 선택</p>
+<div id="b5032a3c-9832-4fff-94cf-4274e9d0ec38" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>diamonds_sub <span class="ot">&lt;-</span> diamonds[, <span class="fu">c</span>(<span class="st">"price"</span>, <span class="st">"carat"</span>, <span class="st">"cut"</span>, <span class="st">"color"</span>, <span class="st">"clarity"</span>, <span class="st">"depth"</span>, <span class="st">"table"</span>, <span class="st">"x"</span>, <span class="st">"y"</span>, <span class="st">"z"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>-</code> 데이터 셔플</p>
+<div id="7cceb8c3-e554-491c-8068-2d9dada03a6e" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2025</span>)  <span class="co"># 재현성 확보</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>shuffled_idx <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">nrow</span>(diamonds_sub))</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>diamonds_sub <span class="ot">&lt;-</span> diamonds_sub[shuffled_idx, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>-</code> 데이터 분할(70% train, 30% test)</p>
+<div id="9ba32b67-7a42-4d91-8e2e-1aec23b1b567" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(diamonds_sub)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>n_train <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fl">0.7</span> <span class="sc">*</span> n)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="5af7bd82-2313-49ce-a4f1-d2c92c08ddbf" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>train_data <span class="ot">&lt;-</span> diamonds_sub[<span class="dv">1</span><span class="sc">:</span>n_train, ]</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>test_data  <span class="ot">&lt;-</span> diamonds_sub[(n_train <span class="sc">+</span> <span class="dv">1</span>)<span class="sc">:</span>n, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="모델-학습" class="level3">
+<h3 class="anchored" data-anchor-id="모델-학습">3. 모델 학습</h3>
+<div id="36b0de02-7f11-4fdb-b701-e2d5796cdd19" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> carat <span class="sc">+</span> cut <span class="sc">+</span> color <span class="sc">+</span> clarity <span class="sc">+</span> depth <span class="sc">+</span> table <span class="sc">+</span> x <span class="sc">+</span> y <span class="sc">+</span> z, <span class="at">data =</span> train_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="b548581b-735d-451c-b08c-9d2f6b2e0c00" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>
+Call:
+lm(formula = price ~ carat + cut + color + clarity + depth + 
+    table + x + y + z, data = train_data)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-21193.1   -592.3   -184.2    379.4  10019.2 
+
+Coefficients:
+              Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   2523.821    486.284   5.190 2.11e-07 ***
+carat        11166.722     57.804 193.183  &lt; 2e-16 ***
+cutGood        569.597     40.501  14.064  &lt; 2e-16 ***
+cutVery Good   708.343     38.926  18.197  &lt; 2e-16 ***
+cutPremium     752.076     38.947  19.310  &lt; 2e-16 ***
+cutIdeal       810.282     40.340  20.086  &lt; 2e-16 ***
+colorE        -207.868     21.473  -9.681  &lt; 2e-16 ***
+colorF        -253.152     21.671 -11.681  &lt; 2e-16 ***
+colorG        -476.298     21.273 -22.390  &lt; 2e-16 ***
+colorH        -967.243     22.517 -42.956  &lt; 2e-16 ***
+colorI       -1462.027     25.326 -57.728  &lt; 2e-16 ***
+colorJ       -2379.519     31.042 -76.655  &lt; 2e-16 ***
+claritySI2    2660.652     51.379  51.784  &lt; 2e-16 ***
+claritySI1    3638.154     51.113  71.179  &lt; 2e-16 ***
+clarityVS2    4247.626     51.407  82.627  &lt; 2e-16 ***
+clarityVS1    4551.296     52.258  87.093  &lt; 2e-16 ***
+clarityVVS2   4918.192     53.839  91.350  &lt; 2e-16 ***
+clarityVVS1   4987.707     55.359  90.097  &lt; 2e-16 ***
+clarityIF     5297.251     59.893  88.445  &lt; 2e-16 ***
+depth          -69.236      5.335 -12.979  &lt; 2e-16 ***
+table          -28.518      3.496  -8.157 3.55e-16 ***
+x             -964.321     35.990 -26.794  &lt; 2e-16 ***
+y               -2.101     19.444  -0.108    0.914    
+z              -40.404     35.011  -1.154    0.248    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1129 on 37734 degrees of freedom
+Multiple R-squared:  0.9198,    Adjusted R-squared:  0.9197 
+F-statistic: 1.881e+04 on 23 and 37734 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+</section>
+<section id="모델-평가" class="level3">
+<h3 class="anchored" data-anchor-id="모델-평가">4. 모델 평가</h3>
+<p><code>-</code> test_set 예측</p>
+<div id="c7528290-43c9-4e84-8eef-0d911ad685d3" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>test_pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(model, <span class="at">newdata =</span> test_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>-</code> test 성능 평가(RMSE 계산)</p>
+<div id="3ff27af0-1c97-4ca9-813f-8c7feb5053ba" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>test_rmse <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((test_pred <span class="sc">-</span> test_data<span class="sc">$</span>price)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Test RMSE:"</span>, <span class="fu">round</span>(test_rmse, <span class="dv">2</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Test RMSE: 1132.54 </code></pre>
+</div>
+</div>
+<p><code>-</code> 예측 vs 실제 산점도 (test set)</p>
+<div id="4ac37faa-a32f-49fb-9704-035ca6123e8b" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(test_pred, test_data<span class="sc">$</span>price,</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Predicted Price"</span>, <span class="at">ylab =</span> <span class="st">"Actual Price"</span>,</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Test Set: Predicted vs Actual Price"</span>,</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">col =</span> <span class="st">"blue"</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)  <span class="co"># 완벽한 예측선 (y = x)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="2.상관계수ex_files/figure-html/cell-2-output-3.png" width="420" height="420" class="figure-img"></p>
+<p><img src="09.Regression_files/figure-html/cell-13-output-1.png" width="420" height="420" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<p><code>-</code> 상관계수</p>
-<ul>
-<li>aX, bY 의 상관계수에서 aXb &lt;0 이면</li>
-<li>Corr(aX,bY) = -Corr(X,Y)</li>
-<li>상관계수 크기는 그대로</li>
-<li>기울기만 변함</li>
-</ul>
-<div id="0be2e4bb-1aec-4c66-ad7e-3e207deff0ea" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">100</span>) <span class="sc">+</span> <span class="dv">2</span><span class="sc">*</span>x</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(x,y)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="sc">-</span><span class="dv">2</span><span class="sc">*</span>x, <span class="fl">0.1</span><span class="sc">*</span>y, <span class="at">col=</span><span class="st">'red'</span>) </span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(<span class="sc">-</span><span class="dv">2</span><span class="sc">*</span>x, <span class="fl">0.1</span><span class="sc">*</span>y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>-</code> RMSE값 그래프에 추가</p>
+<div id="5ea409b9-1188-4130-a83a-6a3c60f16001" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x =</span> <span class="fu">max</span>(test_pred) <span class="sc">*</span> <span class="fl">0.7</span>, </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">y =</span> <span class="fu">min</span>(test_data<span class="sc">$</span>price) <span class="sc">*</span> <span class="fl">1.2</span>, </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">labels =</span> <span class="fu">paste0</span>(<span class="st">"Test RMSE = "</span>, <span class="fu">round</span>(test_rmse, <span class="dv">2</span>)),</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">pos =</span> <span class="dv">4</span>, </span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"black"</span>, </span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">cex =</span> <span class="fl">0.9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>ERROR: Error in text.default(x = max(test_pred) * 0.7, y = min(test_data$price) * : plot.new has not been called yet
+
+Error in text.default(x = max(test_pred) * 0.7, y = min(test_data$price) * : plot.new has not been called yet
+Traceback:
+
+1. text(x = max(test_pred) * 0.7, y = min(test_data$price) * 1.2, 
+ .     labels = paste0("Test RMSE = ", round(test_rmse, 2)), pos = 4, 
+ .     col = "black", cex = 0.9)
+2. text.default(x = max(test_pred) * 0.7, y = min(test_data$price) * 
+ .     1.2, labels = paste0("Test RMSE = ", round(test_rmse, 2)), 
+ .     pos = 4, col = "black", cex = 0.9)</code></pre>
+</div>
+</div>
+<p><code>-</code> 새로운 데이터 생성</p>
+<div id="98408c35-681a-49fd-a637-2a6b5c1506a7" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>new_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">carat =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">1.2</span>),</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">cut =</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"Ideal"</span>, <span class="st">"Premium"</span>), <span class="at">levels =</span> <span class="fu">levels</span>(diamonds<span class="sc">$</span>cut)),</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">color =</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"E"</span>, <span class="st">"H"</span>), <span class="at">levels =</span> <span class="fu">levels</span>(diamonds<span class="sc">$</span>color)),</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">clarity =</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"VS2"</span>, <span class="st">"SI1"</span>), <span class="at">levels =</span> <span class="fu">levels</span>(diamonds<span class="sc">$</span>clarity)),</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">depth =</span> <span class="fu">c</span>(<span class="fl">61.5</span>, <span class="fl">62.2</span>),</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">table =</span> <span class="fu">c</span>(<span class="dv">55</span>, <span class="dv">58</span>),</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">c</span>(<span class="fl">5.1</span>, <span class="fl">6.9</span>),</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">c</span>(<span class="fl">5.2</span>, <span class="fl">7.1</span>),</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">z =</span> <span class="fu">c</span>(<span class="fl">3.15</span>, <span class="fl">4.35</span>)</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>-</code> 새로운 데이터 예측 및 결과 출력</p>
+<div id="bccf920f-51e2-44b6-ab43-53f37067be77" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>predicted_prices <span class="ot">&lt;-</span> <span class="fu">predict</span>(model, <span class="at">newdata =</span> new_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="f8a375f8-55f4-4b14-8edc-e2829e21af42" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>new_data<span class="sc">$</span>predicted_price <span class="ot">&lt;-</span> <span class="fu">round</span>(predicted_prices, <span class="dv">2</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>new_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-0.906127948410664
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>A data.frame: 2 × 10</caption>
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" scope="col">carat</th>
+<th data-quarto-table-cell-role="th" scope="col">cut</th>
+<th data-quarto-table-cell-role="th" scope="col">color</th>
+<th data-quarto-table-cell-role="th" scope="col">clarity</th>
+<th data-quarto-table-cell-role="th" scope="col">depth</th>
+<th data-quarto-table-cell-role="th" scope="col">table</th>
+<th data-quarto-table-cell-role="th" scope="col">x</th>
+<th data-quarto-table-cell-role="th" scope="col">y</th>
+<th data-quarto-table-cell-role="th" scope="col">z</th>
+<th data-quarto-table-cell-role="th" scope="col">predicted_price</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;fct&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;fct&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;fct&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0.5</td>
+<td>Ideal</td>
+<td>E</td>
+<td>VS2</td>
+<td>61.5</td>
+<td>55</td>
+<td>5.1</td>
+<td>5.2</td>
+<td>3.15</td>
+<td>2074.45</td>
+</tr>
+<tr class="even">
+<td>1.2</td>
+<td>Premium</td>
+<td>H</td>
+<td>SI1</td>
+<td>62.2</td>
+<td>58</td>
+<td>6.9</td>
+<td>7.1</td>
+<td>4.35</td>
+<td>6541.83</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div class="cell-output cell-output-display">
--0.906127948410664
 </div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="2.상관계수ex_files/figure-html/cell-3-output-3.png" width="420" height="420" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><code>-</code> 상관계수 : 기울기와 관련 X, 직선에 얼마나 몰려있는가</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

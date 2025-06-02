@@ -2,17 +2,18 @@
   {
     "listing": "/index.html",
     "items": [
-      "/posts/99.11.K-NN_Classification.html",
-      "/posts/99.10.K-NN_Regression.html",
-      "/posts/9.Regression.html",
-      "/posts/8.Classifier.html",
-      "/posts/7.Prediction_Simulations2.html",
-      "/posts/6.Prediction_Simulations1.html",
-      "/posts/5.Simulations_ex.html",
-      "/posts/4.대수의법칙,t분포ex.html",
-      "/posts/3.DC_HW1.html",
-      "/posts/2.상관계수ex.html",
-      "/posts/1.R_distributions.html"
+      "/posts/12.GR.html",
+      "/posts/11.K-NN_Classification.html",
+      "/posts/10.K-NN_Regression.html",
+      "/posts/09.Regression.html",
+      "/posts/08.Classifier.html",
+      "/posts/07.Prediction_Simulations2.html",
+      "/posts/06.Prediction_Simulations1.html",
+      "/posts/05.Simulations_ex.html",
+      "/posts/04.대수의법칙,t분포ex.html",
+      "/posts/03.DC_HW1.html",
+      "/posts/02.상관계수ex.html",
+      "/posts/01.R_distributions.html"
     ]
   }
 ]

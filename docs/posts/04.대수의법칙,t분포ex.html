@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="이상민">
-<meta name="dcterms.date" content="2025-04-05">
+<meta name="dcterms.date" content="2025-04-07">
 
-<title>3. DC HW1 – DC2025</title>
+<title>4. 대수의 법칙, t-분포 ex – DC2025</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -106,35 +106,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -181,7 +152,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">3. DC HW1</h1>
+      <h1 class="title">4. 대수의 법칙, t-분포 ex</h1>
                       </div>
   </div>
     
@@ -198,7 +169,7 @@ window.Quarto = {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">April 5, 2025</p>
+        <p class="date">April 7, 2025</p>
       </div>
     </div>
     
@@ -217,270 +188,130 @@ window.Quarto = {
 
 
 
-<section id="제공된-코드를-이용하여-아래를-시행하시오." class="level2">
-<h2 class="anchored" data-anchor-id="제공된-코드를-이용하여-아래를-시행하시오."><strong>1. 제공된 코드를 이용하여 아래를 시행하시오.</strong></h2>
-<section id="평균이-3인-정규분포-포아송분포-이항분포-감마분포-지수분포에서-각-500개의-표본을-생성해서-5개의-히스토그램을-그리고-5개의-표본평균을-구하시오.-모수가-여러-개인-경우-모수의-값을-조정해서-평균을-3으로-하시오" class="level3">
-<h3 class="anchored" data-anchor-id="평균이-3인-정규분포-포아송분포-이항분포-감마분포-지수분포에서-각-500개의-표본을-생성해서-5개의-히스토그램을-그리고-5개의-표본평균을-구하시오.-모수가-여러-개인-경우-모수의-값을-조정해서-평균을-3으로-하시오"><strong>1) 평균이 3인 정규분포, 포아송분포, 이항분포, 감마분포, 지수분포에서 각 500개의 표본을 생성해서 5개의 히스토그램을 그리고 5개의 표본평균을 구하시오. 모수가 여러 개인 경우 모수의 값을 조정해서 평균을 3으로 하시오</strong></h3>
-</section>
-<section id="정규분포" class="level3">
-<h3 class="anchored" data-anchor-id="정규분포">1. 정규분포</h3>
-<p><code>-</code> 표본추출, 히스토그램</p>
-<ul>
-<li>mean = 3 으로 지정</li>
-</ul>
-<div id="6497a983-c9bb-4627-a0a4-28d603509361" class="cell" data-scrolled="true" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>normal_random <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">500</span>, <span class="at">mean =</span> <span class="dv">3</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(normal_random)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="대수의-법칙" class="level3">
+<h3 class="anchored" data-anchor-id="대수의-법칙">1. 대수의 법칙</h3>
+<div id="aafc5f38-dd28-4268-9c30-0781d4d2d6e3" class="cell" data-scrolled="true" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cumsum</span>(<span class="fu">rpois</span>(<span class="dv">5000</span>,<span class="dv">3</span>))[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class="list-inline"><li>3</li><li>4</li><li>5</li><li>8</li><li>9</li><li>13</li><li>17</li><li>19</li><li>23</li><li>24</li><li>31</li><li>34</li><li>37</li><li>41</li><li>44</li><li>46</li><li>51</li><li>55</li><li>58</li><li>60</li></ol>
+</div>
+</div>
+<div id="7f034e49-877c-43d2-9ced-ba4b7bc77850" class="cell" data-scrolled="true" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="fu">cumsum</span>(<span class="fu">rpois</span>(<span class="dv">5000</span>,<span class="dv">3</span>))<span class="sc">/</span><span class="dv">1</span><span class="sc">:</span><span class="dv">5000</span>)[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class="list-inline"><li>1</li><li>1</li><li>1.33333333333333</li><li>2</li><li>2</li><li>2.5</li><li>2.71428571428571</li><li>3</li><li>3.11111111111111</li><li>3.1</li><li>3.09090909090909</li><li>3</li><li>3</li><li>3</li><li>3.06666666666667</li><li>3.125</li><li>3.17647058823529</li><li>3.11111111111111</li><li>3.21052631578947</li><li>3.25</li></ol>
+</div>
+</div>
+<div id="6875b7fb-781b-49ba-81e2-5ae4fe979e0d" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ts.plot</span>(<span class="fu">cumsum</span>(<span class="fu">rpois</span>(<span class="dv">5000</span>,<span class="dv">3</span>))<span class="sc">/</span><span class="dv">1</span><span class="sc">:</span><span class="dv">5000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="3.DC_HW1_files/figure-html/cell-2-output-1.png" width="420" height="420" class="figure-img"></p>
+<p><img src="04.대수의법칙,t분포ex_files/figure-html/cell-4-output-1.png" width="420" height="420" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<p><code>-</code> 표본평균</p>
-<div id="35fdccc3-a3cf-4050-8810-fbe0c76f73d6" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(normal_random)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-3.0025640596709
-</div>
-</div>
-</section>
-<section id="포아송분포" class="level3">
-<h3 class="anchored" data-anchor-id="포아송분포">2. 포아송분포</h3>
-<p><code>-</code> 표본추출, 히스토그램</p>
+<p><code>-</code> 모평균이 3이므로 3으로 가까이 수렴하는 형태</p>
 <ul>
-<li>포아송 분포에서 <span class="math inline">\(E(X) = \lambda\)</span> 이므로 <span class="math inline">\(\lambda\)</span> = 3으로 지정</li>
+<li>분포 종류 상관 x</li>
+<li>대수의 법칙</li>
 </ul>
-<div id="264a43d5-9594-41b7-8c60-d740a2b781fa" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>poisson_random <span class="ot">&lt;-</span> <span class="fu">rpois</span>(<span class="at">n =</span> <span class="dv">500</span>, <span class="at">lambda =</span> <span class="dv">3</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(poisson_random)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="d66409af-3fe7-47a1-8223-e2a8edbd3477" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>rs<span class="ot">=</span><span class="fu">rep</span>(<span class="dv">0</span>,<span class="dv">1000</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(k <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    rs[k]<span class="ot">=</span><span class="fu">mean</span>(<span class="fu">rpois</span>(<span class="dv">1000</span><span class="sc">*</span>k,<span class="dv">3</span>))</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(k<span class="sc">%%</span><span class="dv">100</span> <span class="sc">==</span> <span class="dv">0</span>) <span class="fu">print</span>(k)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 100
+[1] 200
+[1] 300
+[1] 400
+[1] 500
+[1] 600
+[1] 700
+[1] 800
+[1] 900
+[1] 1000</code></pre>
+</div>
+</div>
+<div id="802e2559-1726-4da8-80ed-c716d712bb86" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="3.DC_HW1_files/figure-html/cell-4-output-1.png" width="420" height="420" class="figure-img"></p>
+<p><img src="04.대수의법칙,t분포ex_files/figure-html/cell-6-output-1.png" width="420" height="420" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<p><code>-</code> 표본평균</p>
-<div id="4679b1be-380c-48b7-8b40-6d7e555f0fd8" class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(poisson_random)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-2.874
+<p><code>-</code> 표본의 크기가 커지면 더 가늘어짐</p>
+<div id="9842b1f7-b061-4008-a7ea-1ea61fe8679d" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>rs<span class="ot">=</span><span class="fu">rep</span>(<span class="dv">0</span>,<span class="dv">1000</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(k <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    rs[k]<span class="ot">=</span><span class="fu">mean</span>(<span class="fu">rpois</span>(<span class="dv">2000</span><span class="sc">*</span>k,<span class="dv">3</span>))</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(k<span class="sc">%%</span><span class="dv">100</span> <span class="sc">==</span> <span class="dv">0</span>) <span class="fu">print</span>(k)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 100
+[1] 200
+[1] 300
+[1] 400
+[1] 500
+[1] 600
+[1] 700
+[1] 800
+[1] 900
+[1] 1000</code></pre>
 </div>
 </div>
-</section>
-<section id="이항분포" class="level3">
-<h3 class="anchored" data-anchor-id="이항분포">3. 이항분포</h3>
-<p><code>-</code> 표본추출, 히스토그램</p>
-<ul>
-<li>이항분포에서 <span class="math inline">\(E(X) = np =\)</span> 3이 되어야하고, <code>size</code> : <code>n</code>, <code>prob</code> = <code>p</code> 에 대응되므로 평균을 10 X 0.3 = 3으로 설정</li>
-</ul>
-<div id="20ed961e-ee4f-4706-b26c-6fa773b236a5" class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>binomial_random <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="at">n =</span> <span class="dv">500</span>, <span class="at">size =</span> <span class="dv">10</span>, <span class="at">prob =</span> <span class="fl">0.3</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(binomial_random, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="fl">0.5</span>, <span class="fl">10.5</span>, <span class="at">by =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="b15bd9d3-c338-43a7-bde9-bc6115ddaef8" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rs,<span class="at">ylim =</span> <span class="fu">c</span>(<span class="fl">2.94</span>, <span class="fl">3.04</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="3.DC_HW1_files/figure-html/cell-6-output-1.png" width="420" height="420" class="figure-img"></p>
+<p><img src="04.대수의법칙,t분포ex_files/figure-html/cell-8-output-1.png" width="420" height="420" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<p><code>-</code> 표본평균</p>
-<div id="d46fd8f6-20da-4205-a69c-b0d9ad1ac2d2" class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(binomial_random)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-3.106
-</div>
-</div>
 </section>
-<section id="감마분포" class="level3">
-<h3 class="anchored" data-anchor-id="감마분포">4. 감마분포</h3>
-<p><code>-</code> 표본추출, 히스토그램</p>
+<section id="t-분포" class="level3">
+<h3 class="anchored" data-anchor-id="t-분포">2. t-분포</h3>
+<p><code>-</code> t-분포 자유도에 따른 차이 시각화</p>
 <ul>
-<li><span class="math inline">\(GAM(\alpha,\beta)\)</span> 에서 <code>shape</code> : <span class="math inline">\(\alpha\)</span>, <code>rate</code> : <span class="math inline">\(\frac{1}{\beta}\)</span> 에 대응</li>
-<li>감마분포에서 <span class="math inline">\(E(X) =\)</span> <span class="math inline">\(\alpha\)</span> X <span class="math inline">\(\beta =\)</span> 3이 되어야함</li>
-<li>1(shape) X 3(=1/rate) = 3</li>
+<li>red : 자유도 5</li>
+<li>blue : 자유도 100</li>
+<li>자유도가 무한이면 표준정규분포로 수렴</li>
 </ul>
-<div id="53d36382-62c7-446c-b58c-0f294ddc2808" class="cell" data-execution_count="36">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>gamma_random <span class="ot">=</span> <span class="fu">rgamma</span>(<span class="at">n=</span><span class="dv">500</span>,<span class="at">shape=</span><span class="dv">1</span>,<span class="at">rate=</span><span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(gamma_random)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="e24040e6-9491-420b-8e2e-e3ac66a91301" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">dt</span>(<span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>,<span class="at">length=</span><span class="dv">100</span>),<span class="dv">5</span>)<span class="sc">~</span><span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>,<span class="at">length=</span><span class="dv">100</span>), <span class="at">type=</span><span class="st">'l'</span>, <span class="at">col=</span><span class="st">'red'</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="fu">dt</span>(<span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>,<span class="at">length=</span><span class="dv">100</span>),<span class="dv">100</span>)<span class="sc">~</span><span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>,<span class="at">length=</span><span class="dv">100</span>), <span class="at">type=</span><span class="st">'l'</span>, <span class="at">col=</span><span class="st">'blue'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="3.DC_HW1_files/figure-html/cell-8-output-1.png" width="420" height="420" class="figure-img"></p>
+<p><img src="04.대수의법칙,t분포ex_files/figure-html/cell-9-output-1.png" width="420" height="420" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<p><code>-</code> 표본평균</p>
-<div id="9c5a874b-3462-428f-af6d-494472c48fcd" class="cell" data-execution_count="37">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(gamma_random)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-2.86597826745274
-</div>
-</div>
-</section>
-<section id="지수분포" class="level3">
-<h3 class="anchored" data-anchor-id="지수분포">5. 지수분포</h3>
-<p><code>-</code> 표본추출, 히스토그램</p>
-<ul>
-<li>지수분포에서 <span class="math inline">\(E(X)= \frac{1}{\lambda}=\)</span> 3이 되어야함</li>
-<li>rate= <span class="math inline">\(\lambda\)</span> 이므로 3(=1/rate)=3</li>
-</ul>
-<div id="fd47b4bb-6ee5-40dc-83b1-9d1f089f7a59" class="cell" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>exponential_random <span class="ot">&lt;-</span> <span class="fu">rexp</span>(<span class="at">n =</span> <span class="dv">500</span>, <span class="at">rate =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(exponential_random)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="3.DC_HW1_files/figure-html/cell-10-output-1.png" width="420" height="420" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><code>-</code> 표본평균</p>
-<div id="874980a0-dba7-423b-b993-33f102c79563" class="cell" data-execution_count="28">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(exponential_random)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-3.00293798354794
-</div>
-</div>
-</section>
-<section id="추가-이항분포-정규분포-감마분포에서-평균을-3-분산을-5로-하여-각-500-개의-표본을-생성해서-3개의-히스토그램과-표본평균-그리고-표본-분산을-구하시오" class="level3">
-<h3 class="anchored" data-anchor-id="추가-이항분포-정규분포-감마분포에서-평균을-3-분산을-5로-하여-각-500-개의-표본을-생성해서-3개의-히스토그램과-표본평균-그리고-표본-분산을-구하시오"><strong>2) (추가) 이항분포, 정규분포, 감마분포에서 평균을 3, 분산을 5로 하여 각 500 개의 표본을 생성해서 3개의 히스토그램과 표본평균 그리고 표본 분산을 구하시오</strong></h3>
-</section>
-<section id="이항분포-1" class="level3">
-<h3 class="anchored" data-anchor-id="이항분포-1">1. 이항분포</h3>
-<p><code>-</code> 표본추출, 히스토그램</p>
-<ul>
-<li>이항분포에서 <span class="math inline">\(E(X) = np\)</span> 이고</li>
-<li>이항분포에서 <span class="math inline">\(Var(X) = np(1-p)\)</span> 임</li>
-<li>np=3이어야하고 np(1-p)=5여야하므로 (1-p)=5/3 <span class="math inline">\(\to\)</span> (1-p)&gt;1 <span class="math inline">\(\to\)</span> 0&gt;p인 상황이므로 불가능하다. p는 확률이므로 &gt;=0</li>
-<li>이항분포에서 평균이 3, 분산이 5인 표본을 추출할 수 없다.</li>
-</ul>
-</section>
-<section id="정규분포-1" class="level3">
-<h3 class="anchored" data-anchor-id="정규분포-1">2. 정규분포</h3>
-<p><code>-</code> 표본추출, 히스토그램</p>
-<ul>
-<li>mean = 3 으로 지정</li>
-<li><span class="math inline">\(Var(X)=5\)</span> 이여야 하므로 sd=<span class="math inline">\(\sqrt{Var}\)</span>=<span class="math inline">\(\sqrt5\)</span> 로 지정</li>
-</ul>
-<div id="4f1e24a0-3e78-4b7e-b68a-cc52a3ff9a05" class="cell" data-execution_count="53">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>normal_random <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">500</span>, <span class="at">mean =</span> <span class="dv">3</span>, <span class="at">sd=</span><span class="fu">sqrt</span>(<span class="dv">5</span>))</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(normal_random)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="3.DC_HW1_files/figure-html/cell-12-output-1.png" width="420" height="420" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><code>-</code> 표본평균, 표본분산</p>
-<div id="1d2b6c77-2195-4bb2-9d08-770bb86da2ff" class="cell" data-execution_count="60">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(normal_random)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(normal_random)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-2.92370604471217
-</div>
-<div class="cell-output cell-output-display">
-5.19843216215837
-</div>
-</div>
-</section>
-<section id="감마분포-1" class="level3">
-<h3 class="anchored" data-anchor-id="감마분포-1">3. 감마분포</h3>
-<p><code>-</code> 표본추출, 히스토그램</p>
-<ul>
-<li><span class="math inline">\(GAM(\alpha,\beta)\)</span> 에서 <code>shape</code> : <span class="math inline">\(\alpha\)</span>, <code>rate</code> : <span class="math inline">\(\frac{1}{\beta}\)</span> 에 대응</li>
-<li>감마분포에서 <span class="math inline">\(E(X) =\)</span> <span class="math inline">\(\alpha\)</span> X <span class="math inline">\(\beta\)</span> = 3이 되어야함</li>
-<li><span class="math inline">\(Var(X) =\)</span> <span class="math inline">\(\alpha\)</span> X <span class="math inline">\(\beta^2\)</span> = 5가 되어야함</li>
-<li><span class="math inline">\(\to\)</span> <span class="math inline">\(\beta\)</span> = 5/3, <span class="math inline">\(\alpha\)</span> = 9/5 <span class="math inline">\(\to\)</span> rate = 3/5</li>
-</ul>
-<div id="c8a3aa21-ef28-427e-88d7-2f035b1172cf" class="cell" data-execution_count="64">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>gamma_random <span class="ot">=</span> <span class="fu">rgamma</span>(<span class="at">n=</span><span class="dv">500</span>,<span class="at">shape=</span><span class="dv">9</span><span class="sc">/</span><span class="dv">5</span>,<span class="at">rate=</span><span class="dv">3</span><span class="sc">/</span><span class="dv">5</span>)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(gamma_random)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="3.DC_HW1_files/figure-html/cell-14-output-1.png" width="420" height="420" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><code>-</code> 표본평균, 표본 분산</p>
-<div id="778b6329-1655-4c99-8f4e-40bf20a19cb6" class="cell" data-execution_count="65">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(gamma_random)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(gamma_random)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-3.15297204789198
-</div>
-<div class="cell-output cell-output-display">
-4.84604724922782
-</div>
-</div>
-</section>
-</section>
-<section id="아래와-같이-표본이-주어져-있다고-한다." class="level2">
-<h2 class="anchored" data-anchor-id="아래와-같이-표본이-주어져-있다고-한다."><strong>3. 아래와 같이 표본이 주어져 있다고 한다.</strong></h2>
-<section id="두-변수-간의-표본과-공분산-그리고-표본-상관계수를-계산하고-해석하시오" class="level3">
-<h3 class="anchored" data-anchor-id="두-변수-간의-표본과-공분산-그리고-표본-상관계수를-계산하고-해석하시오"><strong>1) 두 변수 간의 표본과 공분산 그리고 표본 상관계수를 계산하고 해석하시오</strong></h3>
-<div id="329d27bf-2d7e-4305-9bf6-6b21c1cc0e43" class="cell" data-execution_count="66">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">10</span>,<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">10</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">7</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="45b262ca-6c6d-4a51-a99b-73ccf84e5ee9" class="cell" data-execution_count="71">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cov</span>(x,y)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(x,y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-4.13888888888889
-</div>
-<div class="cell-output cell-output-display">
-0.442013916579573
-</div>
-</div>
-<p><code>-</code> 표본 공분산 = 4.138</p>
-<ul>
-<li>표본 공분산 : <span class="math inline">\(S_{xy} &gt; 0\)</span> 이므로 x,y는 양의 선형적 관계를 가진다.</li>
-<li><span class="math inline">\(\to\)</span> x가 증가할수록 y도 증가하는 경향을 보인다.</li>
-</ul>
-<p><code>-</code> 표본 상관계수 = 0.442</p>
-<ul>
-<li>표본 상관계수[-1,1] : <span class="math inline">\(r_{xy}\)</span> &gt; 0 이므로 양의 선형관계를 가진다.</li>
-<li>하지만 |<span class="math inline">\(r_{xy}\)</span>|가 0.4정도로 약한 관계를 보인다.</li>
-<li><span class="math inline">\(\to\)</span> x가 증가할수록 y도 증가하는 경향을 보이지만 그 관계는 약하다.</li>
-</ul>
-</section>
-<section id="추가-x-to-2x1-y-to--y2로-변환하고-나서-표본-상관계수를-계산하시오." class="level3">
-<h3 class="anchored" data-anchor-id="추가-x-to-2x1-y-to--y2로-변환하고-나서-표본-상관계수를-계산하시오."><strong>2) (추가) <span class="math inline">\(x\)</span> <span class="math inline">\(\to\)</span> <span class="math inline">\(2x+1\)</span>, <span class="math inline">\(y\)</span> <span class="math inline">\(\to\)</span> <span class="math inline">\(-y+2\)</span>로 변환하고 나서 표본 상관계수를 계산하시오.</strong></h3>
-<div id="01c21048-97de-478a-8592-d6eab0505ca5" class="cell" data-execution_count="72">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(<span class="dv">2</span><span class="sc">*</span>x<span class="sc">+</span><span class="dv">1</span>,<span class="sc">-</span>y<span class="sc">+</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
--0.442013916579573
-</div>
-</div>
-<p><code>-</code> 표본 상관계수 = -0.442</p>
-<ul>
-<li>상관계수의 크기는 선형 변환에 따라 바뀌지 않음</li>
-<li>만약 <span class="math inline">\(aX+b, cX+d\)</span> 에서
-<ul>
-<li><ol type="1">
-<li><span class="math inline">\(a\)</span> X <span class="math inline">\(b\)</span> <span class="math inline">\(&lt; 0\)</span> 이면 <span class="math inline">\(\to\)</span> Corr(aX,cY) = -Corr(X,Y)</li>
-</ol></li>
-<li><ol start="2" type="1">
-<li><span class="math inline">\(a\)</span> X <span class="math inline">\(b\)</span> <span class="math inline">\(&gt; 0\)</span> 이면 <span class="math inline">\(\to\)</span> Corr(aX,cY) = Corr(X,Y)</li>
-</ol></li>
-</ul></li>
-<li>여기서 2 X -1 = -2이므로 1)의 경우이므로 표본 상관계수의 부호가 변하였다.</li>
-</ul>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

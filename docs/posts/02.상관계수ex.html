@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="이상민">
-<meta name="dcterms.date" content="2025-04-07">
+<meta name="dcterms.date" content="2025-04-04">
 
-<title>4. 대수의 법칙, t-분포 ex – DC2025</title>
+<title>2. 상관계수 ex – DC2025</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -152,7 +152,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">4. 대수의 법칙, t-분포 ex</h1>
+      <h1 class="title">2. 상관계수 ex</h1>
                       </div>
   </div>
     
@@ -169,7 +169,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">April 7, 2025</p>
+        <p class="date">April 4, 2025</p>
       </div>
     </div>
     
@@ -188,131 +188,63 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="대수의-법칙" class="level3">
-<h3 class="anchored" data-anchor-id="대수의-법칙">1. 대수의 법칙</h3>
-<div id="aafc5f38-dd28-4268-9c30-0781d4d2d6e3" class="cell" data-scrolled="true" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cumsum</span>(<span class="fu">rpois</span>(<span class="dv">5000</span>,<span class="dv">3</span>))[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<style>
-.list-inline {list-style: none; margin:0; padding: 0}
-.list-inline>li {display: inline-block}
-.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
-</style>
-<ol class="list-inline"><li>3</li><li>4</li><li>5</li><li>8</li><li>9</li><li>13</li><li>17</li><li>19</li><li>23</li><li>24</li><li>31</li><li>34</li><li>37</li><li>41</li><li>44</li><li>46</li><li>51</li><li>55</li><li>58</li><li>60</li></ol>
-</div>
-</div>
-<div id="7f034e49-877c-43d2-9ced-ba4b7bc77850" class="cell" data-scrolled="true" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="fu">cumsum</span>(<span class="fu">rpois</span>(<span class="dv">5000</span>,<span class="dv">3</span>))<span class="sc">/</span><span class="dv">1</span><span class="sc">:</span><span class="dv">5000</span>)[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<style>
-.list-inline {list-style: none; margin:0; padding: 0}
-.list-inline>li {display: inline-block}
-.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
-</style>
-<ol class="list-inline"><li>1</li><li>1</li><li>1.33333333333333</li><li>2</li><li>2</li><li>2.5</li><li>2.71428571428571</li><li>3</li><li>3.11111111111111</li><li>3.1</li><li>3.09090909090909</li><li>3</li><li>3</li><li>3</li><li>3.06666666666667</li><li>3.125</li><li>3.17647058823529</li><li>3.11111111111111</li><li>3.21052631578947</li><li>3.25</li></ol>
-</div>
-</div>
-<div id="6875b7fb-781b-49ba-81e2-5ae4fe979e0d" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ts.plot</span>(<span class="fu">cumsum</span>(<span class="fu">rpois</span>(<span class="dv">5000</span>,<span class="dv">3</span>))<span class="sc">/</span><span class="dv">1</span><span class="sc">:</span><span class="dv">5000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="4.대수의법칙,t분포ex_files/figure-html/cell-4-output-1.png" width="420" height="420" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><code>-</code> 모평균이 3이므로 3으로 가까이 수렴하는 형태</p>
+<p><code>-</code> 상관계수</p>
 <ul>
-<li>분포 종류 상관 x</li>
-<li>대수의 법칙</li>
+<li><p>X,Y에 상수를 곱해줘도 그대로, 변하지 않음</p></li>
+<li><p>기울기만 변함</p></li>
 </ul>
-<div id="d66409af-3fe7-47a1-8223-e2a8edbd3477" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>rs<span class="ot">=</span><span class="fu">rep</span>(<span class="dv">0</span>,<span class="dv">1000</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(k <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    {</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    rs[k]<span class="ot">=</span><span class="fu">mean</span>(<span class="fu">rpois</span>(<span class="dv">1000</span><span class="sc">*</span>k,<span class="dv">3</span>))</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(k<span class="sc">%%</span><span class="dv">100</span> <span class="sc">==</span> <span class="dv">0</span>) <span class="fu">print</span>(k)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 100
-[1] 200
-[1] 300
-[1] 400
-[1] 500
-[1] 600
-[1] 700
-[1] 800
-[1] 900
-[1] 1000</code></pre>
+<div id="662ac145-3a58-4237-8b84-41600dc66c78" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">100</span>) <span class="sc">+</span> <span class="dv">2</span><span class="sc">*</span>x</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(x,y)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="dv">2</span><span class="sc">*</span>x, <span class="fl">0.25</span><span class="sc">*</span>y, <span class="at">col=</span><span class="st">'red'</span>) </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(<span class="dv">2</span><span class="sc">*</span>x, <span class="fl">0.25</span><span class="sc">*</span>y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+0.881075342687499
 </div>
+<div class="cell-output cell-output-display">
+0.881075342687499
 </div>
-<div id="802e2559-1726-4da8-80ed-c716d712bb86" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="4.대수의법칙,t분포ex_files/figure-html/cell-6-output-1.png" width="420" height="420" class="figure-img"></p>
+<p><img src="02.상관계수ex_files/figure-html/cell-2-output-3.png" width="420" height="420" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<p><code>-</code> 표본의 크기가 커지면 더 가늘어짐</p>
-<div id="9842b1f7-b061-4008-a7ea-1ea61fe8679d" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>rs<span class="ot">=</span><span class="fu">rep</span>(<span class="dv">0</span>,<span class="dv">1000</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(k <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    {</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    rs[k]<span class="ot">=</span><span class="fu">mean</span>(<span class="fu">rpois</span>(<span class="dv">2000</span><span class="sc">*</span>k,<span class="dv">3</span>))</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(k<span class="sc">%%</span><span class="dv">100</span> <span class="sc">==</span> <span class="dv">0</span>) <span class="fu">print</span>(k)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 100
-[1] 200
-[1] 300
-[1] 400
-[1] 500
-[1] 600
-[1] 700
-[1] 800
-[1] 900
-[1] 1000</code></pre>
-</div>
-</div>
-<div id="b15bd9d3-c338-43a7-bde9-bc6115ddaef8" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rs,<span class="at">ylim =</span> <span class="fu">c</span>(<span class="fl">2.94</span>, <span class="fl">3.04</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="4.대수의법칙,t분포ex_files/figure-html/cell-8-output-1.png" width="420" height="420" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="t-분포" class="level3">
-<h3 class="anchored" data-anchor-id="t-분포">2. t-분포</h3>
-<p><code>-</code> t-분포 자유도에 따른 차이 시각화</p>
+<p><code>-</code> 상관계수</p>
 <ul>
-<li>red : 자유도 5</li>
-<li>blue : 자유도 100</li>
-<li>자유도가 무한이면 표준정규분포로 수렴</li>
+<li>aX, bY 의 상관계수에서 aXb &lt;0 이면</li>
+<li>Corr(aX,bY) = -Corr(X,Y)</li>
+<li>상관계수 크기는 그대로</li>
+<li>기울기만 변함</li>
 </ul>
-<div id="e24040e6-9491-420b-8e2e-e3ac66a91301" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">dt</span>(<span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>,<span class="at">length=</span><span class="dv">100</span>),<span class="dv">5</span>)<span class="sc">~</span><span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>,<span class="at">length=</span><span class="dv">100</span>), <span class="at">type=</span><span class="st">'l'</span>, <span class="at">col=</span><span class="st">'red'</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="fu">dt</span>(<span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>,<span class="at">length=</span><span class="dv">100</span>),<span class="dv">100</span>)<span class="sc">~</span><span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>,<span class="at">length=</span><span class="dv">100</span>), <span class="at">type=</span><span class="st">'l'</span>, <span class="at">col=</span><span class="st">'blue'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="0be2e4bb-1aec-4c66-ad7e-3e207deff0ea" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">100</span>) <span class="sc">+</span> <span class="dv">2</span><span class="sc">*</span>x</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(x,y)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="sc">-</span><span class="dv">2</span><span class="sc">*</span>x, <span class="fl">0.1</span><span class="sc">*</span>y, <span class="at">col=</span><span class="st">'red'</span>) </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(<span class="sc">-</span><span class="dv">2</span><span class="sc">*</span>x, <span class="fl">0.1</span><span class="sc">*</span>y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+0.906127948410664
+</div>
+<div class="cell-output cell-output-display">
+-0.906127948410664
+</div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="4.대수의법칙,t분포ex_files/figure-html/cell-9-output-1.png" width="420" height="420" class="figure-img"></p>
+<p><img src="02.상관계수ex_files/figure-html/cell-3-output-3.png" width="420" height="420" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
+<p><code>-</code> 상관계수 : 기울기와 관련 X, 직선에 얼마나 몰려있는가</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
