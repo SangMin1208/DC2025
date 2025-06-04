@@ -537,13 +537,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="72b238fc-75d7-437a-9742-2d18d5ebcf0b" class="cell" data-execution_count="20">
+<div id="72b238fc-75d7-437a-9742-2d18d5ebcf0b" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>mean_x <span class="op">=</span> df[<span class="st">'X1'</span>].mean()</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>mean_y <span class="op">=</span> df[<span class="st">'X2'</span>].mean()</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
 <span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>plt.scatter(df[<span class="st">'X1'</span>], df[<span class="st">'X2'</span>])</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>plt.plot([mean_x, mean_x], [mcin(df[<span class="st">'X2'</span>]), <span class="bu">max</span>(df[<span class="st">'X2'</span>])], <span class="st">'r--'</span>, label<span class="op">=</span><span class="ss">f'평균 X1: </span><span class="sc">{</span>mean_x<span class="sc">:.2f}</span><span class="ss">'</span>)</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>plt.plot([mean_x, mean_x], [<span class="bu">min</span>(df[<span class="st">'X2'</span>]), <span class="bu">max</span>(df[<span class="st">'X2'</span>])], <span class="st">'r--'</span>, label<span class="op">=</span><span class="ss">f'평균 X1: </span><span class="sc">{</span>mean_x<span class="sc">:.2f}</span><span class="ss">'</span>)</span>
 <span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="bu">min</span>(df[<span class="st">'X1'</span>]), <span class="bu">max</span>(df[<span class="st">'X1'</span>])], [mean_y, mean_y], <span class="st">'r--'</span>, label<span class="op">=</span><span class="ss">f'평균 X2: </span><span class="sc">{</span>mean_y<span class="sc">:.2f}</span><span class="ss">'</span>)</span>
 <span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'X1'</span>)</span>
 <span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'X2'</span>)</span>
@@ -551,24 +551,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
 <span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[20], line 6</span>
-<span class="ansi-green-fg ansi-bold">      4</span> plt<span style="color:rgb(98,98,98)">.</span>figure(figsize<span style="color:rgb(98,98,98)">=</span>(<span style="color:rgb(98,98,98)">8</span>, <span style="color:rgb(98,98,98)">6</span>))
-<span class="ansi-green-fg ansi-bold">      5</span> plt<span style="color:rgb(98,98,98)">.</span>scatter(df[<span style="color:rgb(175,0,0)">'</span><span style="color:rgb(175,0,0)">X1</span><span style="color:rgb(175,0,0)">'</span>], df[<span style="color:rgb(175,0,0)">'</span><span style="color:rgb(175,0,0)">X2</span><span style="color:rgb(175,0,0)">'</span>])
-<span class="ansi-green-fg">----&gt; 6</span> plt<span style="color:rgb(98,98,98)">.</span>plot([mean_x, mean_x], [<span class="ansi-yellow-bg">mcin</span>(df[<span style="color:rgb(175,0,0)">'</span><span style="color:rgb(175,0,0)">X2</span><span style="color:rgb(175,0,0)">'</span>]), <span style="color:rgb(0,135,0)">max</span>(df[<span style="color:rgb(175,0,0)">'</span><span style="color:rgb(175,0,0)">X2</span><span style="color:rgb(175,0,0)">'</span>])], <span style="color:rgb(175,0,0)">'</span><span style="color:rgb(175,0,0)">r--</span><span style="color:rgb(175,0,0)">'</span>, label<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(175,0,0)">f</span><span style="color:rgb(175,0,0)">'</span><span style="color:rgb(175,0,0)">평균 X1: </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>mean_x<span style="font-weight:bold;color:rgb(175,95,135)">:</span><span style="color:rgb(175,0,0)">.2f</span><span style="font-weight:bold;color:rgb(175,95,135)">}</span><span style="color:rgb(175,0,0)">'</span>)
-<span class="ansi-green-fg ansi-bold">      7</span> plt<span style="color:rgb(98,98,98)">.</span>plot([<span style="color:rgb(0,135,0)">min</span>(df[<span style="color:rgb(175,0,0)">'</span><span style="color:rgb(175,0,0)">X1</span><span style="color:rgb(175,0,0)">'</span>]), <span style="color:rgb(0,135,0)">max</span>(df[<span style="color:rgb(175,0,0)">'</span><span style="color:rgb(175,0,0)">X1</span><span style="color:rgb(175,0,0)">'</span>])], [mean_y, mean_y], <span style="color:rgb(175,0,0)">'</span><span style="color:rgb(175,0,0)">r--</span><span style="color:rgb(175,0,0)">'</span>, label<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(175,0,0)">f</span><span style="color:rgb(175,0,0)">'</span><span style="color:rgb(175,0,0)">평균 X2: </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>mean_y<span style="font-weight:bold;color:rgb(175,95,135)">:</span><span style="color:rgb(175,0,0)">.2f</span><span style="font-weight:bold;color:rgb(175,95,135)">}</span><span style="color:rgb(175,0,0)">'</span>)
-<span class="ansi-green-fg ansi-bold">      8</span> plt<span style="color:rgb(98,98,98)">.</span>xlabel(<span style="color:rgb(175,0,0)">'</span><span style="color:rgb(175,0,0)">X1</span><span style="color:rgb(175,0,0)">'</span>)
-
-<span class="ansi-red-fg">NameError</span>: name 'mcin' is not defined</pre>
-</div>
-</div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="13.Graphics_Python_files/figure-html/cell-17-output-2.png" class="img-fluid figure-img"></p>
+<p><img src="13.Graphics_Python_files/figure-html/cell-17-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
