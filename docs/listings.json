@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/13.Graphics_Python.html",
       "/posts/12.GR.html",
       "/posts/11.K-NN_Classification.html",
       "/posts/10.K-NN_Regression.html",
